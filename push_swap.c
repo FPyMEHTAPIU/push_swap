@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:46:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/11 14:05:52 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:01:30 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(int argc, char *argv[])
 {
 	int	*arr;
 	int	size;
+	int	i;
 
 	if (argc == 1)
 		return (1);
@@ -46,10 +47,11 @@ int	main(int argc, char *argv[])
 	arr = convert_args(&argv[1], &size);
 	if (check_args(arr, size))
 		return (1);
-	while (*arr)
+	i = 0;
+	while (i < size)
 	{
-		ft_printf("%d ", *arr);
-		arr++;
+		ft_printf("%d ", arr[i]);
+		i++;
 	}
 	ft_printf("\n");
 	
