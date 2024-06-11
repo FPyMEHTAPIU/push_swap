@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:05:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/11 16:04:17 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/11 17:20:20 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ int	is_arg_number(char *str)
 	while (str[i])
 	{
 		if (!(ft_isdigit(str[i]) || str[i] == '-'))
-			return (1);
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 static int	check_strs(char **argv, int size)
@@ -53,7 +53,7 @@ static int	check_strs(char **argv, int size)
 	i = 0;
 	while (i < size)
 	{
-		if (is_arg_number(argv[i]))
+		if (!is_arg_number(argv[i]))
 			return (1);
 		i++;
 	}
@@ -84,15 +84,15 @@ int	check_args(int *arr, int size, char **argv)
 	int	doubles;
 
 	strs = check_strs(argv, size);
-	ft_printf("strs: %d\n", strs);
+	//ft_printf("strs: %d\n", strs);
 	if (strs)
 		return (1);
 	range = check_range(arr, size, argv);
-	ft_printf("range: %d\n", range);
+	//ft_printf("range: %d\n", range);
 	if (range)
 		return (1);
 	doubles = check_doubles(arr, size);
-	ft_printf("doubles: %d\n", doubles);
+	//ft_printf("doubles: %d\n", doubles);
 	if (doubles)
 		return (1);
 	return (0);

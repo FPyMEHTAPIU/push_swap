@@ -6,14 +6,14 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 16:00:25 by msavelie          #+#    #+#             */
-/*   Updated: 2024/04/30 13:37:32 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/11 17:20:28 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_atoi(const char *str)
 {
 	int			sign;
-	long long	num;
+	int			num;
 	long long	check;
 
 	num = 0;
@@ -36,5 +36,5 @@ int	ft_atoi(const char *str)
 		num = check;
 		str++;
 	}
-	return ((int)(num * sign));
+	return ((num * sign));
 }
