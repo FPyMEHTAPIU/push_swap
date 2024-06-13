@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:42:42 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/13 16:08:45 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/13 16:57:05 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ void	rotate_one(int *stack, int size);
 void	rotate_both(int *a, int *b, int size_a, int size_b);
 void	rrotate_one(int *stack, int size);
 void	rrotate_both(int *a, int *b, int size_a, int size_b);
+void	sorting(int *a, int *b, int *size_a, int *size_b);
 
 #endif

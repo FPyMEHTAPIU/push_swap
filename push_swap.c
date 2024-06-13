@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:46:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/13 15:37:41 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/13 16:57:39 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char *argv[])
 		i++;
 	}
 	ft_printf("\n");
-	ft_printf("Stack b before pushes:\n");
+	/*ft_printf("Stack b before pushes:\n");
 	i = 0;
 	while (i < size_b)
 	{
@@ -74,6 +74,15 @@ int	main(int argc, char *argv[])
 	while (i < size_b)
 	{
 		ft_printf("b[%d] = %d\n", i, b[i]);
+		i++;
+	}
+	ft_printf("\n");*/
+	sorting(a, b, &size_a, &size_b);
+	ft_printf("Stack a after sorting:\n");
+	i = 0;
+	while (i < size_a)
+	{
+		ft_printf("a[%d] = %d\n", i, a[i]);
 		i++;
 	}
 	ft_printf("\n");
