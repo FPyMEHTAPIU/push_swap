@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: msavelie <msavelie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:05:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/11 17:20:20 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/13 11:36:43 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ static int	check_range(int *arr, int size, char **argv)
 	while (i < size)
 	{
 		//ft_printf("i = %d, arr[i] = %d, argv[i]: %s\n", i, arr[i], argv[i]);
-		if ((arr[i] == -1 && ft_strncmp(argv[i], "-1", 2) != 0))
+		if ((arr[i] == -1 && ft_strncmp(argv[size - 1 - i], "-1", 2) != 0))
 			return (1);
-		if ((arr[i] == 0 && ft_strncmp(argv[i], "0", 1) != 0))
+		if ((arr[i] == 0 && ft_strncmp(argv[size - 1 - i], "0", 1) != 0))
 			return (1);
 		i++;
 	}

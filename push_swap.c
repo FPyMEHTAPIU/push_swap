@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: msavelie <msavelie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:46:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/11 15:16:59 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/13 11:28:43 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	main(int argc, char *argv[])
 {
-	int	*arr;
+	int	*a;
 	int	size;
 	int	i;
 
 	if (argc == 1)
 		return (1);
 	size = 0;
-	arr = convert_args(&argv[1], &size);
-	if (check_args(arr, size, &argv[1]))
+	a = convert_args(&argv[1], &size);
+	if (check_args(a, size, &argv[1]))
 	{
 		ft_putstr("Error\n");
 		return (1);
@@ -30,7 +30,7 @@ int	main(int argc, char *argv[])
 	i = 0;
 	while (i < size)
 	{
-		ft_printf("%d ", arr[i]);
+		ft_printf("%d ", a[i]);
 		i++;
 	}
 	ft_printf("\n");

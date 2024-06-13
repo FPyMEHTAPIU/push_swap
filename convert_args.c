@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_args.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: msavelie <msavelie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:47:26 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/11 17:20:51 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/13 11:34:59 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ int	*convert_args(char **argv, int *size)
 	i = 0;
 	while (i < *size)
 	{
-		if (!is_arg_number(argv[i]))
+		if (!is_arg_number(argv[(*size) - 1 - i]))
 			arr[i] = -1;
 		else
-			arr[i] = ft_atoi(argv[i]);
+			arr[i] = ft_atoi(argv[(*size) - 1 - i]);
 		i++;
 	}
 	return (arr);
