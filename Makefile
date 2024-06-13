@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/11 12:46:12 by msavelie          #+#    #+#              #
-#    Updated: 2024/06/11 15:18:15 by msavelie         ###   ########.fr        #
+#    Updated: 2024/06/13 12:42:21 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME = push_swap
 SRCS = \
 	push_swap.c \
 	convert_args.c \
-	check_args.c
+	check_args.c \
+	instructions.c
 
 OBJS = $(SRCS:.c=.o)
 
