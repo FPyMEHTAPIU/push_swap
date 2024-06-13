@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instructions.c                                     :+:      :+:    :+:   */
+/*   instructions_ps.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:47:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/13 15:39:14 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/13 16:21:39 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void    swap_one(int *stack, int size)
 	int temp;
 
 	i = 0;
+	if (size <= 1)
+		return ;
 	while (i < size)
 		i++;
 	temp = stack[i - 1];
@@ -27,10 +29,14 @@ void    swap_one(int *stack, int size)
 
 void	swap_both(int *a, int *b, int size_a, int size_b)
 {
-	int	i;
+	swap_one(a, size_a);
+	swap_one(b, size_b);
+	/*int	i;
 	int	j;
 	int	temp;
 
+	if (size_a == 0 || size_b == 0)
+		return ;
 	i = 0;
 	j = 0;
 	while (i < size_a)
@@ -39,7 +45,7 @@ void	swap_both(int *a, int *b, int size_a, int size_b)
 		j++;
 	temp = a[i - 1];
 	a[i - 1] = b[j - 1];
-	b[j - 1] = temp;
+	b[j - 1] = temp;*/
 }
 // num is provided outside from the top of another stack
 int	*copy_stack(int *stack, int size)

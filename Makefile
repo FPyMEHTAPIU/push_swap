@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/11 12:46:12 by msavelie          #+#    #+#              #
-#    Updated: 2024/06/13 16:05:01 by msavelie         ###   ########.fr        #
+#    Updated: 2024/06/13 16:11:51 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ SRCS = \
 	push_swap.c \
 	convert_args.c \
 	check_args.c \
-	push_and_swap.c \
-	rotate.c
+	instructions_ps.c  \
+	instructions_rotate.c 
 
 OBJS = $(SRCS:.c=.o)
 
