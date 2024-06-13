@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:47:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/13 14:59:18 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/13 15:39:14 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	*copy_stack(int *stack, int size)
 	new_stack = malloc(sizeof(int) * size);
 	if (!new_stack)
 	{
-		free(stack);
+		//free(stack);
 		return (NULL);
 	}
 	i = 0;
