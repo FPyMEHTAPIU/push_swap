@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:46:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/13 13:11:41 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/13 15:08:48 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,76 @@ int	main(int argc, char *argv[])
 	// do some pushes (pa, pa, pb)
 	ft_printf("size_a = %d, size_b = %d\n", size_a, size_b);
 	push_num(a, b, &size_a, &size_b);
+	ft_printf("Stack a after 1 push:\n");
+	i = 0;
+	while (i < size_a)
+	{
+		ft_printf("a[%d] = %d\n", i, a[i]);
+		i++;
+	}
+	ft_printf("\n");
+	ft_printf("Stack b after 1 push:\n");
+	i = 0;
+	while (i < size_b)
+	{
+		ft_printf("b[%d] = %d\n", i, b[i]);
+		i++;
+	}
+	ft_printf("\n");
 	ft_printf("size_a = %d, size_b = %d\n", size_a, size_b);
 	push_num(a, b, &size_a, &size_b);
+	ft_printf("Stack a after 2 push:\n");
+	i = 0;
+	while (i < size_a)
+	{
+		ft_printf("a[%d] = %d\n", i, a[i]);
+		i++;
+	}
+	ft_printf("\n");
+	ft_printf("Stack b after 2 push:\n");
+	i = 0;
+	while (i < size_b)
+	{
+		ft_printf("b[%d] = %d\n", i, b[i]);
+		i++;
+	}
+	ft_printf("\n");
 	ft_printf("size_a = %d, size_b = %d\n", size_a, size_b);
+
+	ft_printf("Stack a before swap:\n");
+	i = 0;
+	while (i < size_a)
+	{
+		ft_printf("a[%d] = %d\n", i, a[i]);
+		i++;
+	}
+	ft_printf("\n");
+	ft_printf("Stack b before swap:\n");
+	i = 0;
+	while (i < size_b)
+	{
+		ft_printf("b[%d] = %d\n", i, b[i]);
+		i++;
+	}
+	ft_printf("\n");
+	swap_both(a, b, size_a, size_b);
+	ft_printf("Stack a after swap:\n");
+	i = 0;
+	while (i < size_a)
+	{
+		ft_printf("a[%d] = %d\n", i, a[i]);
+		i++;
+	}
+	ft_printf("\n");
+	ft_printf("Stack b after swap:\n");
+	i = 0;
+	while (i < size_b)
+	{
+		ft_printf("b[%d] = %d\n", i, b[i]);
+		i++;
+	}
+	ft_printf("\n");
+
 	push_num(b, a, &size_b, &size_a);
 	ft_printf("size_a = %d, size_b = %d\n", size_a, size_b);
 
@@ -80,6 +147,44 @@ int	main(int argc, char *argv[])
 		i++;
 	}
 	ft_printf("\n");
-	
+	push_num(b, a, &size_b, &size_a);
+	ft_printf("size_a = %d, size_b = %d\n", size_a, size_b);
+
+	ft_printf("Stack a after pushes:\n");
+	i = 0;
+	while (i < size_a)
+	{
+		ft_printf("a[%d] = %d\n", i, a[i]);
+		i++;
+	}
+	ft_printf("\n");
+	ft_printf("Stack b after pushes:\n");
+	i = 0;
+	while (i < size_b)
+	{
+		ft_printf("b[%d] = %d\n", i, b[i]);
+		i++;
+	}
+	ft_printf("\n");
+
+
+	ft_printf("Stack a before swap:\n");
+	i = 0;
+	while (i < size_a)
+	{
+		ft_printf("a[%d] = %d\n", i, a[i]);
+		i++;
+	}
+	ft_printf("\n");
+	swap_one(a, size_a);
+	ft_printf("Stack a after swap:\n");
+	i = 0;
+	while (i < size_a)
+	{
+		ft_printf("a[%d] = %d\n", i, a[i]);
+		i++;
+	}
+	ft_printf("\n");
+
 	return (0);
 }
