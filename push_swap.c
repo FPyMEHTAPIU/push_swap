@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:46:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/13 16:57:39 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/14 19:56:28 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,22 @@
 
 int	main(int argc, char *argv[])
 {
-	int	*a;
-	int	*b;
-	int	size_a;
-	int	size_b;
-	int	i;
+	int		*a;
+	int		*b;
+	int		size_a;
+	int		size_b;
+	char	**strs;
 
-	if (argc == 1)
-		return (0);
 	size_a = 0;
 	size_b = 0;
-	a = convert_args(&argv[1], &size_a);
-	if (check_args(a, size_a, &argv[1]))
+	if (argc == 1)
+		return (0);
+	else if (argc == 2)
+		strs = ft_split(argv[1], ' ');
+	else
+		strs = &argv[1];
+	a = convert_args(strs, &size_a);
+	if (check_args(a, size_a, strs))
 	{
 		ft_putstr("Error\n");
 		return (1);
@@ -38,14 +42,14 @@ int	main(int argc, char *argv[])
 		return (1);
 	}
 
-	ft_printf("Stack a before pushes:\n");
+	/*ft_printf("Stack a before pushes:\n");
 	i = 0;
 	while (i < size_a)
 	{
 		ft_printf("a[%d] = %d\n", i, a[i]);
 		i++;
 	}
-	ft_printf("\n");
+	ft_printf("\n");*/
 	/*ft_printf("Stack b before pushes:\n");
 	i = 0;
 	while (i < size_b)
@@ -78,14 +82,14 @@ int	main(int argc, char *argv[])
 	}
 	ft_printf("\n");*/
 	sorting(a, b, &size_a, &size_b);
-	ft_printf("Stack a after sorting:\n");
+	/*ft_printf("Stack a after sorting:\n");
 	i = 0;
 	while (i < size_a)
 	{
 		ft_printf("a[%d] = %d\n", i, a[i]);
 		i++;
 	}
-	ft_printf("\n");
+	ft_printf("\n");*/
 	free(a);
 	free(b);
 	return (0);
