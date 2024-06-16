@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/11 12:46:12 by msavelie          #+#    #+#              #
-#    Updated: 2024/06/14 18:02:36 by msavelie         ###   ########.fr        #
+#    Updated: 2024/06/16 14:51:18 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,10 +38,9 @@ all: ${LIBFT_NAME} ${NAME}
 ${LIBFT_NAME}:
 	make -C ${LIBFT_DIR}
 
-
 ${NAME}: ${OBJS}
 	cp ${LIBFT_DIR}/libft.a .
-	cc ${FLAGS} ${SRCS} libft.a -o ${NAME}
+	gcc -g ${FLAGS} ${SRCS} libft.a -o ${NAME}
 	@chmod 777 ${NAME}
 
 clean: 

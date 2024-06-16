@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:09:59 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/16 12:27:09 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/16 16:25:32 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,24 @@ static void	rotate_check(int *a, int *b, int size_a, int size_b)
 	j = size_b - 1;
 	rot_a = 0;
 	rot_b = 0;
-	if (a[i] > a[0] && a[0] <= a[i - 1])
+	ft_printf("b = %p\n", b);
+	for (int q = 0; q < size_a; q++)
+	{
+		ft_printf("a[%d] = %d ", q, a[q]);
+		ft_printf("\n");
+	}
+	for (int q = 0; q < size_b; q++)
+	{
+		ft_printf("b[%d] = %d ", q, *b++);
+		ft_printf("\n");
+	}
+	if (i > 0 && a[i] > a[0] && a[0] <= a[i - 1])
 		rot_a = 1;
-	else if(a[i] > a[0] && a[i] > a[i - 1])
+	else if(i > 0 && a[i] > a[0] && a[i] > a[i - 1])
 		rot_a = 2;
-	if (b[j] < b[0] && b[0] >= b[j - 1])
+	if (j > 0 && b[j] < b[0] && b[0] >= b[j - 1])
 		rot_b = 1;
-	else if(b[j] < b[0] && b[j] < b[j - 1])
+	else if(j > 0 && b[j] < b[0] && b[j] < b[j - 1])
 		rot_b = 2;
 	if (rot_a == 0 && rot_b == 0)
 		return ;
@@ -44,17 +55,16 @@ static void	rotate_check(int *a, int *b, int size_a, int size_b)
 	if (rot_a == 1)
 	{
 		rotate_one(a, size_a, 'a');
-		/*ft_printf("rot_a = %d\trot_b = %d\n", rot_a, rot_b);
-		for(int w = 0; w < 2; w++)
-			ft_printf("b[%d] = %d\n", w, b[w]);*/
+		ft_printf("rot_a = %d\trot_b = %d\n", rot_a, rot_b);
 	}
-		
 	else if (rot_a == 2)
 		rrotate_one(a, size_a, 'a');
 	if (rot_b == 1)
 		rotate_one(b, size_b, 'b');
 	else if (rot_b == 2)
 		rrotate_one(b, size_b, 'b');
+	for(int w = 0; w < 2; w++)
+		ft_printf("b[%d] = %d\n", w, b[w]);
 }
 
 /* I CAN'T USE BUBBLE SORT BECAUSE IT IS FUCKING STACK :D
@@ -83,9 +93,11 @@ void sorting(int *a, int *b, int *size_a, int *size_b)
 		}
 		if (ordered_elems == (*size_a) - 1)
 		{
+			if (*size_b == 0)
+				return ;
 			while ((*size_b) > 0)
 			{
-				push_num(b, a, size_b, size_a);
+				push_num(&b, &a, size_b, size_a);
 				ft_printf("pa\n");
 			}
 			ordered_elems = 1;
@@ -94,7 +106,8 @@ void sorting(int *a, int *b, int *size_a, int *size_b)
 		{
 			if ((*size_a) > 0)
 			{
-				push_num(a, b, size_a, size_b);
+				// THIS function doesn't change b, it is still 0x0
+				push_num(&a, &b, size_a, size_b);
 				ft_printf("pb\n");
 			}
 			ordered_elems = 0;
