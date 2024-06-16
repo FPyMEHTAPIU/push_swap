@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:47:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/14 19:37:54 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/16 12:24:58 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	swap_both(int *a, int *b, int size_a, int size_b)
 	swap_one(b, size_b);
 }
 // num is provided outside from the top of another stack
-int	*copy_stack(int *stack, int size)
+static int	*copy_stack(int *stack, int size)
 {
 	int	*new_stack;
 	int	i;
@@ -41,7 +41,7 @@ int	*copy_stack(int *stack, int size)
 	new_stack = malloc(sizeof(int) * size);
 	if (!new_stack)
 	{
-		//free(stack);
+		free(stack);
 		return (NULL);
 	}
 	i = 0;

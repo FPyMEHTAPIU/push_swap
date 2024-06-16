@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:42:42 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/13 16:57:05 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/16 12:24:08 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int		is_arg_number(char *str);
 int		check_args(int *arr, int size, char **argv);
 void    swap_one(int *stack, int size);
 void	swap_both(int *a, int *b, int size_a, int size_b);
-int		*copy_stack(int *stack, int size);
+//int		*copy_stack(int *stack, int size);
 void	push_num(int *s1, int *s2, int *size_s1, int *size_s2);
-void	rotate_one(int *stack, int size);
+void	rotate_one(int *stack, int size, char c);
 void	rotate_both(int *a, int *b, int size_a, int size_b);
-void	rrotate_one(int *stack, int size);
+void	rrotate_one(int *stack, int size, char c);
 void	rrotate_both(int *a, int *b, int size_a, int size_b);
 void	sorting(int *a, int *b, int *size_a, int *size_b);
 

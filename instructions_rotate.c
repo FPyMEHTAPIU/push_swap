@@ -6,13 +6,13 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:41:33 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/13 16:11:35 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/16 12:09:44 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate_one(int *stack, int size)
+void	rotate_one(int *stack, int size, char c)
 {
 	int	i;
 	int	arr[size];
@@ -30,15 +30,18 @@ void	rotate_one(int *stack, int size)
 		stack[i] = arr[i];
 		i++;
 	}
+	if (c != 0)
+		ft_printf("r%c\n", c);
 }
 
 void	rotate_both(int *a, int *b, int size_a, int size_b)
 {
-	rotate_one(a, size_a);
-	rotate_one(b, size_b);
+	rotate_one(a, size_a, 0);
+	rotate_one(b, size_b, 0);
+	ft_printf("rr\n");
 }
 
-void	rrotate_one(int *stack, int size)
+void	rrotate_one(int *stack, int size, char c)
 {
 	int	i;
 	int	arr[size];
@@ -56,10 +59,13 @@ void	rrotate_one(int *stack, int size)
 		stack[i] = arr[i];
 		i++;
 	}
+	if (c != 0)
+		ft_printf("rr%c\n", c);
 }
 
 void	rrotate_both(int *a, int *b, int size_a, int size_b)
 {
-	rrotate_one(a, size_a);
-	rrotate_one(b, size_b);
+	rrotate_one(a, size_a, 0);
+	rrotate_one(b, size_b, 0);
+	ft_printf("rrr\n");
 }
