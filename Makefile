@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/11 12:46:12 by msavelie          #+#    #+#              #
-#    Updated: 2024/06/17 13:58:24 by msavelie         ###   ########.fr        #
+#    Updated: 2024/06/17 14:06:07 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ ${NAME}: ${OBJS}
 	@chmod 777 ${NAME}
 
 clean: 
-	${RM} ${OBJS}
+	@${RM} ${OBJS}
 	@make clean -C ${LIBFT_DIR}
 
 fclean: clean
