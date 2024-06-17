@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:05:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/13 12:42:35 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:40:26 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int	check_args(int *arr, int size, char **argv)
 	int	strs;
 	int	doubles;
 
+	if (size == 1)
+		return (1);
 	strs = check_strs(argv, size);
 	//ft_printf("strs: %d\n", strs);
 	if (strs)

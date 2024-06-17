@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:09:59 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/17 12:52:49 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:53:15 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,30 @@ static void	rotate_check(int *a, int *b, int size_a, int size_b)
 		ft_printf("b[%d] = %d\n", w, b[w]);*/
 }
 
+void	swap_check(int *a, int *b, int size_a, int size_b)
+{
+	int	i;
+	int	swap_a;
+	int	swap_b;
+
+	i = size_a - 1;
+	swap_a = 0;
+	swap_b = 0;
+	if (size_a > 1 && a[i] > a[i - 1])
+		swap_a = 1;
+	i = size_b - 1;
+	if (size_b > 1 && b[i] < b[i - 1])
+		swap_b = 1;
+	if (swap_a == swap_b && swap_a == 0)
+		return ;
+	else if (swap_a == 1 && swap_b == 1)
+		swap_both(a, b, size_a, size_b);
+	else if (swap_a == 1)
+		swap_one(a, size_a, 'a');
+	else if (swap_b == 1)
+		swap_one(b, size_b, 'b');
+}
+
 /* I CAN'T USE BUBBLE SORT BECAUSE IT IS FUCKING STACK :D
 I CAN HANDLE WITH ONLY 2 LAST ELEMS OR 1ST AND LAST */
 void sorting(int **a, int **b, int *size_a, int *size_b)
@@ -82,10 +106,7 @@ void sorting(int **a, int **b, int *size_a, int *size_b)
 	{
 		i = *size_a - 1;
 		if ((*a)[i] > (*a)[i - 1])
-		{
-			swap_one(*a, *size_a);
-			ft_printf("sa\n");
-		}
+			swap_one(*a, *size_a, 'a');
 		rotate_check(*a, *b, *size_a, *size_b);
 		i = 0;
 		while (i < *size_a - 1)
@@ -102,6 +123,7 @@ void sorting(int **a, int **b, int *size_a, int *size_b)
 			{
 				push_num(b, a, size_b, size_a);
 				ft_printf("pa\n");
+				swap_check(*a, *b, *size_a, *size_b);
 			}
 			ordered_elems = 1;
 		}
@@ -109,7 +131,6 @@ void sorting(int **a, int **b, int *size_a, int *size_b)
 		{
 			if ((*size_a) > 0)
 			{
-				// THIS function doesn't change b, it is still 0x0
 				push_num(a, b, size_a, size_b);
 				ft_printf("pb\n");
 			}

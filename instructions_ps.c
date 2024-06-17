@@ -6,13 +6,13 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:47:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/17 14:08:44 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:15:48 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    swap_one(int *stack, int size)
+void    swap_one(int *stack, int size, char c)
 {
 	int i;
 	int temp;
@@ -25,12 +25,15 @@ void    swap_one(int *stack, int size)
 	temp = stack[i - 1];
 	stack[i - 1] = stack[i - 2];
 	stack[i - 2] = temp;
+	if (c != 0)
+		ft_printf("s%c\n", c);
 }
 
 void	swap_both(int *a, int *b, int size_a, int size_b)
 {
-	swap_one(a, size_a);
-	swap_one(b, size_b);
+	swap_one(a, size_a, 0);
+	swap_one(b, size_b, 0);
+	ft_printf("ss\n");
 }
 // num is provided outside from the top of another stack
 static int	*copy_stack(int *stack, int size)
