@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 09:23:09 by msavelie          #+#    #+#              #
-#    Updated: 2024/06/03 14:48:15 by msavelie         ###   ########.fr        #
+#    Updated: 2024/06/17 11:57:15 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,23 +75,23 @@ OBJS = ${SRCS:.c=.o}
 all: ${PRINTF_NAME} ${NAME}
 
 ${PRINTF_NAME}:
-	make -C ${PRINTF_DIR}
+	@make -C ${PRINTF_DIR}
 
 ${NAME}: ${OBJS}
-	cp ${PRINTF_DIR}/libftprintf.a .
-	mv libftprintf.a ${NAME}
-	${AR} ${NAME} ${OBJS}
-	${LIB} ${NAME}
+	@cp ${PRINTF_DIR}/libftprintf.a .
+	@mv libftprintf.a ${NAME}
+	@${AR} ${NAME} ${OBJS}
+	@${LIB} ${NAME}
 
 clean:
-	${RM} ${OBJS} 
-	make clean -C ${PRINTF_DIR}
+	@${RM} ${OBJS} 
+	@make clean -C ${PRINTF_DIR}
 
 fclean: clean
-	${RM} ${NAME}
-	make fclean -C ${PRINTF_DIR}
+	@${RM} ${NAME}
+	@make fclean -C ${PRINTF_DIR}
 
 re: fclean all
 
 %.o : %.c
-	cc ${CFLAGS} -c $< -o $@
+	@cc ${CFLAGS} -c $< -o $@

@@ -6,13 +6,13 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:41:33 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/16 12:09:44 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/17 12:47:27 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate_one(int *stack, int size, char c)
+void	rotate_one(int *stack, const int size, char c)
 {
 	int	i;
 	int	arr[size];
@@ -23,7 +23,7 @@ void	rotate_one(int *stack, int size, char c)
 		arr[i - 1] = stack[i];
 		i++;
 	}
-	arr[i] = stack[0];
+	arr[--i] = stack[0];
 	i = 0;
 	while (i < size)
 	{
@@ -41,7 +41,7 @@ void	rotate_both(int *a, int *b, int size_a, int size_b)
 	ft_printf("rr\n");
 }
 
-void	rrotate_one(int *stack, int size, char c)
+void	rrotate_one(int *stack, const int size, char c)
 {
 	int	i;
 	int	arr[size];

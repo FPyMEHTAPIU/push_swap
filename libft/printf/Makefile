@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/15 09:09:46 by msavelie          #+#    #+#              #
-#    Updated: 2024/06/11 12:58:26 by msavelie         ###   ########.fr        #
+#    Updated: 2024/06/17 11:55:58 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,16 +30,16 @@ LIB = ranlib
 all: ${NAME}
 
 ${NAME}: ${OBJS}
-	${AR} ${NAME} ${OBJS}
-	${LIB} ${NAME}
+	@${AR} ${NAME} ${OBJS}
+	@${LIB} ${NAME}
 
 clean: 
-	${RM} ${OBJS}
+	@${RM} ${OBJS}
 
 fclean: clean
-	${RM} ${NAME}
+	@${RM} ${NAME}
 
 re: fclean all
 
 %.o : %.c
-	cc ${FLAGS} -c $< -o $@
+	@cc ${FLAGS} -c $< -o $@
