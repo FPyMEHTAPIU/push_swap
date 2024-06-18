@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:42:42 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/17 16:14:13 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/18 14:50:59 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include <fcntl.h>
+# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include "./libft/libft.h"

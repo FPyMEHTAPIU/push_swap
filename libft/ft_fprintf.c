@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_fprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/09 15:48:10 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/18 15:16:27 by msavelie         ###   ########.fr       */
+/*   Created: 2024/06/18 19:24:59 by msavelie          #+#    #+#             */
+/*   Updated: 2024/06/18 19:37:50 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-static int	check_next_char(char sym, va_list ptr)
+static int	check_next_char(char sym, va_list ptr, int fd)
 {
 	int		len;
 
 	len = 0;
 	if (sym == 'c')
-		len += ft_putchar(va_arg(ptr, int));
+		len += ft_putchar_fd(va_arg(ptr, int), fd);
 	else if (sym == 's')
-		len += ft_putstr(va_arg(ptr, char *));
+		len += ft_putstr_fd(va_arg(ptr, char *), fd);
 	else if (sym == 'p')
-		len += print_p((unsigned long)(va_arg(ptr, void *)));
+		len += fprint_p((unsigned long)(va_arg(ptr, void *)), fd);
 	else if (sym == 'd' || sym == 'i')
-		len += ft_print_hex((long) va_arg(ptr, int), 10, sym);
+		len += ft_fprint_hex((long) va_arg(ptr, int), 10, sym, fd);
 	else if (sym == 'u')
-		len += ft_print_hex((unsigned long) va_arg(ptr, unsigned int), 10, sym);
+		len += ft_fprint_hex((unsigned long) va_arg(ptr, unsigned int), 10, sym, fd);
 	else if (sym == 'x' || sym == 'X')
-		len += ft_print_hex((long) va_arg(ptr, unsigned int), 16, sym);
+		len += ft_fprint_hex((long) va_arg(ptr, unsigned int), 16, sym, fd);
 	else
-		len += write(1, &sym, 1);
+		len += write(fd, &sym, 1);
 	return (len);
 }
 
-int	ft_printf(const char *data, ...)
+int	ft_fprintf(int fd, const char *data, ...)
 {
 	va_list	ptr;
 	int		bytes;
@@ -46,10 +46,10 @@ int	ft_printf(const char *data, ...)
 	while (*data != '\0')
 	{
 		if (*data == '%')
-			len = check_next_char(*(++data), ptr);
+			len = check_next_char(*(++data), ptr, fd);
 		else if ((' ' >= *data || *data <= '~')
 			|| ('\t' >= *data || *data <= '\r'))
-			len = write(1, data, 1);
+			len = write(fd, data, 1);
 		else
 			bytes++;
 		if (len < 0)

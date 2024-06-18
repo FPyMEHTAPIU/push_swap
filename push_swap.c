@@ -6,11 +6,24 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:46:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/17 16:35:05 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:49:43 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*static void	write_err(void)
+{
+	char	file[6];
+
+	fd = open("out.txt", O_RDWR | O_CREAT | O_EXCL | 0644);
+	if (fd == -1)
+		return ;
+	
+	read(fd, file, 6);
+	ft_printf("%s", file);
+	exit(fd);
+}*/
 
 int	main(int argc, char *argv[])
 {
@@ -31,16 +44,11 @@ int	main(int argc, char *argv[])
 	a = convert_args(strs, &size_a);
 	if (check_args(a, size_a, strs))
 	{
-		ft_putstr("Error\n");
-		return (1);
-	}
-	b = NULL; //malloc(sizeof(int));
-	/*if (!b)
-	{
-		ft_printf("Allocation memory for the stack b is failed!\n");
 		free(a);
-		return (1);
-	}*/
+		write(2, "Error\n", 6);
+		return (0);
+	}
+	b = NULL;
 	/*ft_printf("Stack a before sorting:\n");
 	int i = 0;
 	while (i < size_a)
@@ -50,15 +58,15 @@ int	main(int argc, char *argv[])
 	}
 	ft_printf("\n");*/
 	sorting(&a, &b, &size_a, &size_b);
-	ft_printf("Stack a after sorting:\n");
+	/*ft_printf("Stack a after sorting:\n");
 	int i = 0;
 	while (i < size_a)
 	{
 		ft_printf("a[%d] = %d\n", i, a[i]);
 		i++;
 	}
-	ft_printf("\n");
-	//ft_printf("size_a = %d\n", size_a);
+	ft_printf("\n");*/
+
 	free(a);
 	free(b);
 	return (0);
