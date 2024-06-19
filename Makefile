@@ -6,14 +6,14 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/11 12:46:12 by msavelie          #+#    #+#              #
-#    Updated: 2024/06/17 14:06:07 by msavelie         ###   ########.fr        #
+#    Updated: 2024/06/19 15:31:52 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
 SRCS = \
-	push_swap.c \
+	main.c \
 	convert_args.c \
 	check_args.c \
 	instructions_ps.c  \

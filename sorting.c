@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:09:59 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/19 12:44:10 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:37:04 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,5 @@ void sorting(int **a, int **b, int *size_a, int *size_b)
 			}
 		}
 		ordered_elems = 0;
-	}
+	}	
 }
