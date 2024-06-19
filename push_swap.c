@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:46:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/18 19:49:43 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/19 12:19:44 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,22 @@ int	main(int argc, char *argv[])
 	int		*b;
 	int		size_a;
 	int		size_b;
-	char	**strs;
+	//char	**strs;
 
 	size_a = 0;
 	size_b = 0;
 	if (argc == 1)
 		return (0);
-	else if (argc == 2)
+	/*else if (argc == 2)
 		strs = ft_split(argv[1], ' ');
 	else
-		strs = &argv[1];
-	a = convert_args(strs, &size_a);
-	if (check_args(a, size_a, strs))
+		strs = &argv[1];*/
+	a = convert_args(&argv[1], &size_a);
+	if (check_args(a, size_a, &argv[1]))
 	{
 		free(a);
-		write(2, "Error\n", 6);
+		ft_fprintf(2, "Error\n");
+		//write(2, "Error\n", 6);
 		return (0);
 	}
 	b = NULL;

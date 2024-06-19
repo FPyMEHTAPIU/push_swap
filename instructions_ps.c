@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:47:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/17 16:15:48 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/19 12:17:56 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	push_num(int **s1, int **s2, int *size_s1, int *size_s2)
 	if (!s2)
 	{
 		free(s1);
-		ft_printf("Error\n");
+		ft_fprintf(2, "Error\n");
 		return ;
 	}
 	/*ft_printf("new_s2[%d] = %d\ts1[%d] = %d\n", (*size_s2) - 1, s2[(*size_s2)-1], (*size_s1) - 1, s1[(*size_s1 ) - 1]);	
@@ -90,7 +90,7 @@ void	push_num(int **s1, int **s2, int *size_s1, int *size_s2)
 	if (!s1)
 	{
 		free(s2);
-		ft_printf("Error\n");
+		ft_fprintf(2, "Error\n");
 		return ;
 	}
 }

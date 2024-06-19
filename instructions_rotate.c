@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:41:33 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/17 12:47:27 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/19 12:41:01 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void	rrotate_one(int *stack, const int size, char c)
 	i = 0;
 	while (i + 1 < size)
 	{
-		arr[i] = stack[i + 1];
+		arr[i + 1] = stack[i];
 		i++;
 	}
-	arr[i] = stack[0];
+	arr[0] = stack[i];
 	i = 0;
 	while (i < size)
 	{

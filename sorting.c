@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:09:59 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/18 19:55:54 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/19 12:44:10 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ static void	rotate_check(int *a, int *b, int size_a, int size_b)
 	rot_b = 0;
 	if (i > 0 && a[i] > a[0] && a[0] <= a[i - 1])
 		rot_a = 1;
-	else if(i > 0 && a[i] > a[0] && a[i] > a[i - 1])
+	else if (i > 0 && a[i] > a[0] && a[i] > a[i - 1])
 		rot_a = 2;
 	if (j > 0 && b[j] < b[0] && b[0] >= b[j - 1])
 		rot_b = 1;
-	else if(j > 0 && b[j] < b[0] && b[j] < b[j - 1])
+	else if (j > 0 && b[j] < b[0] && b[j] < b[j - 1])
 		rot_b = 2;
 	if (rot_a == 0 && rot_b == 0)
 		return ;
@@ -86,6 +86,11 @@ void sorting(int **a, int **b, int *size_a, int *size_b)
 	while (!ordered_elems)
 	{
 		i = *size_a - 1;
+		/*for (int s = 0; s < *size_a; s++)
+		{
+			ft_printf("a[%d] = %d\n", s, (*a)[s]);
+		}*/
+		rotate_check(*a, *b, *size_a, *size_b);
 		if ((*a)[i] > (*a)[i - 1])
 			swap_one(*a, *size_a, 'a');
 		rotate_check(*a, *b, *size_a, *size_b);
@@ -96,6 +101,10 @@ void sorting(int **a, int **b, int *size_a, int *size_b)
 				ordered_elems++;
 			i++;
 		}
+		/*for (int s = 0; s < *size_a; s++)
+		{
+			ft_printf("a[%d] = %d\n", s, (*a)[s]);
+		}*/
 		if (ordered_elems == (*size_a) - 1)
 		{
 			if (*size_b == 0)
