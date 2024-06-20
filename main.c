@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:46:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/19 15:33:43 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:44:28 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char *argv[])
 
 	size_a = 0;
 	size_b = 0;
-	if (argc == 1)
+	if (argc == 2)
 		return (0);
 	a = convert_args(&argv[1], &size_a);
 	if (check_args(a, size_a, &argv[1]))
