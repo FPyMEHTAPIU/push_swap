@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/11 12:46:12 by msavelie          #+#    #+#              #
-#    Updated: 2024/06/19 15:31:52 by msavelie         ###   ########.fr        #
+#    Updated: 2024/06/24 17:22:06 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ SRCS = \
 	check_args.c \
 	instructions_ps.c  \
 	instructions_rotate.c \
+	sort_small.c \
+	moves_calculator.c \
 	sorting.c
 
 OBJS = $(SRCS:.c=.o)

@@ -1,48 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorting.c                                          :+:      :+:    :+:   */
+/*   sort_small.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 16:09:59 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/24 16:10:24 by msavelie         ###   ########.fr       */
+/*   Created: 2024/06/24 15:57:19 by msavelie          #+#    #+#             */
+/*   Updated: 2024/06/24 15:58:28 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	**alloc_stack(int **a, int **b, int *size_a, int *size_b)
+static int	is_ordered(int *a, int size_a)
 {
 	int	i;
 
-	b = malloc(sizeof(int) * 2);
-	if (!b)
-	{
-		//free(a);
-		return (NULL);
-	}
-	*size_b += 2;
 	i = 0;
-	while (i++ < 2)
+	while (i < size_a - 1)
 	{
-		push_num(a, b, size_a, size_b);
-		ft_printf("pb\n");
+		if (a[i] < a[i + 1])
+			return (0);
+		i++;
 	}
-	return (b);
+	return (1);
 }
 
-void sorting(int **a, int **b, int *size_a, int *size_b)
+void	sort_small(int *a, int size_a)
 {
-	if (*size_a <= 3)
+	while (!is_ordered(a, size_a))
 	{
-		sort_small(*a, *size_a);
-		return ;
-	}
-	if (!alloc_stack(a, b, size_a, size_b))
-		return ;
-	while (*size_a > 3)
-	{
-		
+		if (size_a == 3)
+		{
+			if (a[2] > a[1] && a[2] < a[0])
+				swap_one(a, size_a, 'a');
+			else if (a[0] < a[1] && a[0] > a[2])
+				rrotate_one(a, size_a, 'a');
+			else
+				rotate_one(a, size_a, 'a');
+		}
+		else
+			swap_one(a, size_a, 'a');
 	}
 }

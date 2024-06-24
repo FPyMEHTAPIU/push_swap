@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:47:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/19 12:17:56 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:53:12 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static int	*copy_stack(int *stack, int size)
 	int	*new_stack;
 	int	i;
 
-	//ft_printf("size = %d\n", size);
 	if (size == 0)
 	{
 		free(stack);
@@ -57,11 +56,8 @@ static int	*copy_stack(int *stack, int size)
 	while (i < size && stack)
 	{
 		new_stack[i] = stack[i];
-		/*ft_printf("stack[%d] = %d\n", i, stack[i]);
-		ft_printf("new_stack[%d] = %d\n", i, new_stack[i]);*/
 		i++;
 	}
-	//ft_printf("\n");
 	free(stack);
 	return (new_stack);
 }
@@ -72,7 +68,6 @@ void	push_num(int **s1, int **s2, int *size_s1, int *size_s2)
 {
 	if (*size_s1 == 0)
 		return ;
-	//ft_printf("\nCreating 2-d stack:\n");
 	*s2 = copy_stack(*s2, ++(*size_s2));
 	if (!s2)
 	{
@@ -80,12 +75,7 @@ void	push_num(int **s1, int **s2, int *size_s1, int *size_s2)
 		ft_fprintf(2, "Error\n");
 		return ;
 	}
-	/*ft_printf("new_s2[%d] = %d\ts1[%d] = %d\n", (*size_s2) - 1, s2[(*size_s2)-1], (*size_s1) - 1, s1[(*size_s1 ) - 1]);	
-	ft_printf("Assigning the last element from the 1-st stack to the 2-nd\n");*/
 	(*s2)[(*size_s2) - 1] = (*s1)[--(*size_s1)];
-	//ft_printf("new_s2[%d] = %d\ts1[%d] = %d\n", (*size_s2) - 1, s2[(*size_s2)-1], (*size_s1), s1[(*size_s1)]);
-	
-	//ft_printf("\nCreating 1-st stack:\n");
 	*s1 = copy_stack(*s1, (*size_s1));
 	if (!s1)
 	{

@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:47:26 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/13 12:42:30 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:52:15 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	*convert_args(char **argv, int *size)
 
 	while (argv[*size])
 		(*size)++;
-	//ft_printf("size: %d\n", *size);
 	arr = malloc(sizeof(int) * (*size));
 	if (!arr)
 		return (0);
