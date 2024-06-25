@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:10:39 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/25 13:54:50 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/25 14:26:56 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	compare_num_with_stack(int num, int *b, int size_b)
 		}
 		j--;
 	}
-	j = 1;
+	j = 0;
 	temp_stack = copy_stack(b, size_b);
 	while (max != temp_stack[size_b - 1])
 	{
@@ -98,7 +98,8 @@ static int	find_min(int *indexes, int size)
 		return (min_pos);
 }
 
-// This function calculates all moves in current situation and returns the lowest value
+/* This function calculates all moves in current situation 
+and returns an index of the lowest movement value */
 int	calculator(int *a, int *b, int size_a, int size_b)
 {
 	int	indexes[size_a];

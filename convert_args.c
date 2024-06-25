@@ -6,30 +6,34 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:47:26 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/24 15:52:15 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:05:16 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*convert_args(char **argv, int *size)
+t_list	*convert_args(char **argv)
 {
-	int	*arr;
-	int	i;
+	t_list	*a;
+	int		i;
 
-	while (argv[*size])
-		(*size)++;
-	arr = malloc(sizeof(int) * (*size));
-	if (!arr)
-		return (0);
 	i = 0;
-	while (i < *size)
-	{
-		if (!is_arg_number(argv[(*size) - 1 - i]))
-			arr[i] = -1;
-		else
-			arr[i] = ft_atoi(argv[(*size) - 1 - i]);
+	while (argv[i])
 		i++;
+	a = malloc(sizeof(t_list) * i);
+	if (!a)
+		return (0);
+	a->size = i;
+	i = 0;
+	while (i < a->size)
+	{
+		if (!is_arg_number(argv[a->size - 1 - i]))
+			a->value = -1;
+		else
+			a->value = ft_atoi(argv[a->size - 1 - i]);
+		i++;
+		a = a->next;
 	}
-	return (arr);
+	a = a->next;
+	return (a);
 }
