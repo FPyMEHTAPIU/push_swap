@@ -6,22 +6,20 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:09:59 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/24 16:10:24 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:35:53 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-static int	**alloc_stack(int **a, int **b, int *size_a, int *size_b)
+static t_stack	**alloc_stack(t_stack **a, int *size_a, int *size_b)
 {
-	int	i;
+	t_stack	**b;
+	int		i;
 
-	b = malloc(sizeof(int) * 2);
+	b = malloc(sizeof(t_stack) * 2);
 	if (!b)
-	{
-		//free(a);
 		return (NULL);
-	}
 	*size_b += 2;
 	i = 0;
 	while (i++ < 2)

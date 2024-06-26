@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:47:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/24 15:53:12 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/26 15:40:01 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	swap_both(int *a, int *b, int size_a, int size_b)
 	ft_printf("ss\n");
 }
 // num is provided outside from the top of another stack
-static int	*copy_stack(int *stack, int size)
+/*static int	*copy_stack(int *stack, int size)
 {
 	int	*new_stack;
 	int	i;
@@ -60,21 +60,26 @@ static int	*copy_stack(int *stack, int size)
 	}
 	free(stack);
 	return (new_stack);
-}
+}*/
 /* Move top element from s1 to s2
 s1 always decreases and s2 always increases (sizes change as well)
 s1 and s2 can both be a and b */
-void	push_num(int **s1, int **s2, int *size_s1, int *size_s2)
+
+
+//TODO
+	// Create a function, that finds the last element in stack and points to it
+	// Add last elem from s1 to the back of the s2
+void	push_num(t_stack **s1, t_stack **s2, int *size_s1, int *size_s2)
 {
 	if (*size_s1 == 0)
 		return ;
-	*s2 = copy_stack(*s2, ++(*size_s2));
+	/**s2 = copy_stack(*s2, ++(*size_s2));
 	if (!s2)
 	{
 		free(s1);
 		ft_fprintf(2, "Error\n");
 		return ;
-	}
+	}*/
 	(*s2)[(*size_s2) - 1] = (*s1)[--(*size_s1)];
 	*s1 = copy_stack(*s1, (*size_s1));
 	if (!s1)

@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_args.c                                     :+:      :+:    :+:   */
+/*   ft_add_back.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/11 11:47:26 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/26 13:29:57 by msavelie         ###   ########.fr       */
+/*   Created: 2024/06/26 12:39:43 by msavelie          #+#    #+#             */
+/*   Updated: 2024/06/26 13:23:38 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-t_stack	**convert_args(char **argv, int *size_a)
+/* This fuction adds the node to the end of the stack
+It should be used with ft_stack_new(value) */
+void	ft_add_back(t_stack **lst, t_stack *new)
 {
-	t_stack	**a;
-	int		i;
+	t_stack	*temp;
 
-	i = 0;
-	while (argv[i])
-		i++;
-	a = (t_stack**)malloc(sizeof(t_stack*) * i);
-	if (!a)
-		return (0);
-	*size_a = i;
-	i = 0;
-	while (i < *size_a)
+	if (!new)
+		return ;
+	if (!(*lst))
 	{
-		if (!is_arg_number(argv[*size_a - 1 - i]))
-			ft_add_back(a, ft_stack_new(-1));
-		else
-			ft_add_back(a, ft_stack_new(ft_atoi(argv[*size_a - 1 - i])));
-		i++;
+		*lst = new;
+		return ;
 	}
-	return (a);
+	temp = *lst;
+	while (temp->next != NULL)
+		temp = temp->next;
+	temp->next = new;
 }

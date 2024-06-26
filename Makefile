@@ -6,21 +6,29 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/11 12:46:12 by msavelie          #+#    #+#              #
-#    Updated: 2024/06/24 17:22:06 by msavelie         ###   ########.fr        #
+#    Updated: 2024/06/26 13:14:39 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
+INSTR_DIR = ./Instructions
+LIST_DIR = ./Stack_operations
+SORT_DIR = ./Sorting
+
 SRCS = \
 	main.c \
 	convert_args.c \
 	check_args.c \
-	instructions_ps.c  \
-	instructions_rotate.c \
-	sort_small.c \
-	moves_calculator.c \
-	sorting.c
+	${INSTR_DIR}/instructions_ps.c  \
+	${INSTR_DIR}/instructions_rotate.c \
+	${LIST_DIR}/ft_add_back.c \
+	${LIST_DIR}/ft_add_front.c \
+	${LIST_DIR}/ft_clear.c \
+	${LIST_DIR}/ft_stack_new.c \
+	${SORT_DIR}/sort_small.c \
+	${SORT_DIR}/moves_calculator.c \
+	${SORT_DIR}/sorting.c
 
 OBJS = $(SRCS:.c=.o)
 

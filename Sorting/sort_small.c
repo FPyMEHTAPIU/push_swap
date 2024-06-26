@@ -6,11 +6,11 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:57:19 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/24 15:58:28 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:11:52 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static int	is_ordered(int *a, int size_a)
 {

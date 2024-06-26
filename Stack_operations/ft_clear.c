@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_args.c                                     :+:      :+:    :+:   */
+/*   ft_clear.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/11 11:47:26 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/26 13:29:57 by msavelie         ###   ########.fr       */
+/*   Created: 2024/06/26 13:01:44 by msavelie          #+#    #+#             */
+/*   Updated: 2024/06/26 13:21:58 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-t_stack	**convert_args(char **argv, int *size_a)
+//This function deletes only one passed node from the stack
+void	ft_delone(t_list *stack)
 {
-	t_stack	**a;
-	int		i;
+	if (!stack)
+		return ;
+	free(stack);
+}
+//This fuction deletes all nodes from the stack and frees it
+void	ft_clear(t_stack **stack)
+{
+	t_stack	*temp;
 
-	i = 0;
-	while (argv[i])
-		i++;
-	a = (t_stack**)malloc(sizeof(t_stack*) * i);
-	if (!a)
-		return (0);
-	*size_a = i;
-	i = 0;
-	while (i < *size_a)
+	if (!stack)
+		return ;
+	while (*stack != NULL)
 	{
-		if (!is_arg_number(argv[*size_a - 1 - i]))
-			ft_add_back(a, ft_stack_new(-1));
-		else
-			ft_add_back(a, ft_stack_new(ft_atoi(argv[*size_a - 1 - i])));
-		i++;
+		temp = (*stack)->next;
+		free(*stack);
+		*stack = temp;
 	}
-	return (a);
+	free(stack);
 }
