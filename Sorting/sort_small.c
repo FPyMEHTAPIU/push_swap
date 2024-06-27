@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:57:19 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/27 15:58:56 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:37:36 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	is_ordered(t_stack *a)
 {
-	while (a->next->first != 0)
+	while (a->next->first != 1)
 	{
 		if (a->value < a->next->value)
 			return (0);

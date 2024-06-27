@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:39:43 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/27 14:31:17 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:27:14 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ void	ft_add_back(t_stack **lst, t_stack *new)
 	temp->last = 0;
 	temp->next = new;
 	temp->next->last = 1;
-	temp->next->next = ft_first(temp);
 	temp->next->prev = temp;
+	temp->next->next = ft_first(temp);
 }

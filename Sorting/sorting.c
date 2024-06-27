@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:09:59 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/27 16:02:28 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:06:48 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void sorting(t_stack **a, t_stack **b, int *size_a, int *size_b)
 	}
 	if (!alloc_stack(a, b, size_a, size_b))
 		return ;
-	while (*size_a > 3)
+	/*while (*size_a > 3)
 	{
 		
-	}
+	}*/
 }
