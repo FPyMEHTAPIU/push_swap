@@ -6,65 +6,64 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:10:39 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/26 13:11:48 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:01:39 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
 // This function just copies a stack to the temp one for the further calculations
-static int	*copy_stack(int *stack, int size)
+static t_stack	**copy_stack(t_stack *stack, int size)
 {
-	int	*temp;
-	int	i;
+	t_stack	**arr;
 
-	i = 0;
-	temp = malloc(sizeof(int) * size);
-	if (!temp)
+	arr = (t_stack**)malloc(sizeof(t_stack*) * size);
+	if (!arr)
 		return (NULL);
-	while (i < size)
+	while (stack->last != 1)
 	{
-		temp[i] = stack[i];
-		i++;
+		ft_add_back(arr, stack);
+		stack = stack->next;
 	}
-	return (temp);
+	return (arr);
 }
 
 // This function compares a number from stack with all numbers in another stack
-static int	compare_num_with_stack(int num, int *b, int size_b)
+static int	compare_num_with_stack(int num, t_stack *b, int size_b)
 {
-	int	j;
-	int	max;
-	int	index;
-	int	*temp_stack;
+	int		j;
+	int		max;
+	t_stack	**temp_arr;
 
 	j = size_b - 1;
-	max = b[j];
-	while (j >= 0)
+	max = ft_last(b)->value;
+	while (j >= 0 && b->first != 0)
 	{
-		if (max < b[j] && b[j] < num)
+		if (max < b->value && b->value < num)
 		{
-			max = b[j];
-			index = j;
+			max = b->value;
+			b->index = j;
 		}
 		j--;
+		b = b->prev;
 	}
 	j = 0;
-	temp_stack = copy_stack(b, size_b);
-	while (max != temp_stack[size_b - 1])
+	temp_arr = copy_stack(b, size_b);
+	while (max != ft_last(*temp_arr)->value)
 	{
-		if (index > (size_b - 1) / 2)
+		if (b->index > (size_b - 1) / 2)
 		{
-			rotate_one(temp_stack, size_b, 0);
+			rotate_one(*temp_arr, 0);
 			j++;
 		}
 		else
 		{
-			rrotate_one(temp_stack, size_b, 0);
+			rrotate_one(*temp_arr, 0);
 			j--;
 		}
 	}
-	free(temp_stack);
+	free(temp_arr);
+	b->rotation = j;
 	return (j);
 }
 
@@ -100,7 +99,7 @@ static int	find_min(int *indexes, int size)
 
 /* This function calculates all moves in current situation 
 and returns an index of the lowest movement value */
-int	calculator(int *a, int *b, int size_a, int size_b)
+int	calculator(t_stack *a, t_stack *b, int size_a, int size_b)
 {
 	int	indexes[size_a];
 	int	i;
@@ -110,7 +109,7 @@ int	calculator(int *a, int *b, int size_a, int size_b)
 	while (i >= 0)
 	{
 		// compare elements from 'a' to the second stack
-		indexes[i] = compare_num_with_stack(a[i], b, size_b);
+		indexes[i] = compare_num_with_stack(a->value, b, size_b);
 		i--;
 	}
 	// Find minimum number in array

@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:46:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/26 12:34:18 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:47:38 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	main(int argc, char *argv[])
 {
-	t_stack	*a;
-	t_stack	*b;
+	t_stack	**a;
+	t_stack	**b;
 	int		size_a;
 	int		size_b;
 	char	**strs;
@@ -27,7 +27,7 @@ int	main(int argc, char *argv[])
 	else
 		strs = &argv[1];
 	a = convert_args(strs, &size_a);
-	if (check_args(a, size_a, strs) || size_a == 0)
+	if (check_args(*a, size_a, strs) || size_a == 0)
 	{
 		if (argc == 2)
 			free(strs);
@@ -52,7 +52,7 @@ int	main(int argc, char *argv[])
 		i--;
 	}
 	ft_printf("\n");*/
-	sorting(&a, &b, &size_a, &size_b);
+	sorting(a, b, &size_a, &size_b);
 	/*ft_printf("Stack a after sorting:\n");
 	i = size_a - 1;
 	while (i >= 0)

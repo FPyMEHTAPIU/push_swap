@@ -6,30 +6,32 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:47:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/26 15:40:01 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:58:07 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-void    swap_one(int *stack, int size, char c)
+void    swap_one(t_stack *stack, int size, char c)
 {
-	int i;
-	int temp;
+	t_stack *temp_last;
+	t_stack *temp_prev;
 
-	i = 0;
 	if (size <= 1)
 		return ;
-	while (i < size)
-		i++;
-	temp = stack[i - 1];
-	stack[i - 1] = stack[i - 2];
-	stack[i - 2] = temp;
+	temp_last = stack;
+	temp_prev = stack->prev;
+	stack->last = 0;
+	stack = temp_prev;
+	stack->prev = temp_last;
+	stack->next = ft_first(stack);
+	stack->prev->next = stack;
+	stack->last = 1;
 	if (c != 0)
 		ft_printf("s%c\n", c);
 }
 
-void	swap_both(int *a, int *b, int size_a, int size_b)
+void	swap_both(t_stack *a, t_stack *b, int size_a, int size_b)
 {
 	swap_one(a, size_a, 0);
 	swap_one(b, size_b, 0);
@@ -73,20 +75,9 @@ void	push_num(t_stack **s1, t_stack **s2, int *size_s1, int *size_s2)
 {
 	if (*size_s1 == 0)
 		return ;
-	/**s2 = copy_stack(*s2, ++(*size_s2));
-	if (!s2)
-	{
-		free(s1);
-		ft_fprintf(2, "Error\n");
-		return ;
-	}*/
-	(*s2)[(*size_s2) - 1] = (*s1)[--(*size_s1)];
-	*s1 = copy_stack(*s1, (*size_s1));
-	if (!s1)
-	{
-		free(s2);
-		ft_fprintf(2, "Error\n");
-		return ;
-	}
+	ft_add_back(s2, ft_last(*s1));
+	(*size_s2)++;
+	ft_delone(ft_last(*s1));
+	(*size_s1)--;
 }
 

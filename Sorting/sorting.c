@@ -6,15 +6,14 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:09:59 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/26 13:35:53 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:02:28 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static t_stack	**alloc_stack(t_stack **a, int *size_a, int *size_b)
+static t_stack	**alloc_stack(t_stack **a, t_stack **b, int *size_a, int *size_b)
 {
-	t_stack	**b;
 	int		i;
 
 	b = malloc(sizeof(t_stack) * 2);
@@ -30,7 +29,7 @@ static t_stack	**alloc_stack(t_stack **a, int *size_a, int *size_b)
 	return (b);
 }
 
-void sorting(int **a, int **b, int *size_a, int *size_b)
+void sorting(t_stack **a, t_stack **b, int *size_a, int *size_b)
 {
 	if (*size_a <= 3)
 	{

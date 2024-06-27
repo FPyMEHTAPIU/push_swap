@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack_new.c                                     :+:      :+:    :+:   */
+/*   ft_last.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 12:35:11 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/27 15:49:19 by msavelie         ###   ########.fr       */
+/*   Created: 2024/06/27 13:33:16 by msavelie          #+#    #+#             */
+/*   Updated: 2024/06/27 13:36:57 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-//This fuction creates a node, allocates memory for it and assign the value
-t_stack	*ft_stack_new(int content)
+t_stack	*ft_last(t_stack *lst)
 {
-	t_stack	*new_stack;
-
-	new_stack = malloc(sizeof(t_stack));
-	if (!new_stack)
+	if (!lst)
 		return (NULL);
-	new_stack->value = content;
-	new_stack->next = NULL;
-	return (new_stack);
+	while (lst->last != 1)
+		lst = lst->next;
+	return (lst);
 }
