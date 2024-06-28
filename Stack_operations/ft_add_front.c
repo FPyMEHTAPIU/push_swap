@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:41:29 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/27 14:32:11 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/28 12:38:45 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,18 @@
 It should be used with ft_stack_new(value) */
 void	ft_add_front(t_stack **stack, t_stack *new)
 {
+	//t_stack	*temp;
+
 	if (!new)
 		return ;
-	(*stack)->first = 0;
+	//temp = new->prev;
 	new->next = *stack;
+	(*stack)->prev = new;
+	(*stack)->first = 0;
+	new->last = 0;
+	new->first = 1;
+	(*stack)->next->last = 1;
 	*stack = new;
-	(*stack)->first = 1;
-	(*stack)->next->next = ft_first(*stack);
-	(*stack)->next->prev = *stack;
+	//(*stack)->next->next = ft_first(*stack);
+	//(*stack)->prev = temp;
 }
