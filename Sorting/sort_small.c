@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:57:19 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/27 17:37:36 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/28 12:54:43 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,18 @@ static int	is_ordered(t_stack *a)
 
 void	sort_small(t_stack *a, int size_a)
 {
+	t_stack	*last;
+
 	while (!is_ordered(a))
 	{
 		if (size_a == 3)
 		{
+			last = ft_last(a);
 			//if (a[2] > a[1] && a[2] < a[0])
-			if (ft_last(a)->value > a->next->value && ft_last(a)->value < a->value)
+			if (last->value > a->next->value && last->value < a->value)
 				swap_one(a, size_a, 'a');
 			//else if (a[0] < a[1] && a[0] > a[2])
-			else if (a->value < a->next->value && a->value > ft_last(a)->value)
+			else if (a->value < a->next->value && a->value > last->value)
 				rrotate_one(a, 'a');
 			else
 				rotate_one(a, 'a');
