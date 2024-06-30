@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:57:19 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/30 11:12:12 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/30 19:03:58 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,13 @@ void	sort_small(t_stack *a, int size_a)
 			if (last->value > a->next->value && last->value < a->value)
 				swap_one(a, size_a, 'a');
 			//else if (a[0] < a[1] && a[0] > a[2])
-			else if (a->value < a->next->value && a->value > last->value)
+			else if (a->value < a->next->value && a->next->value > last->value)
 				rrotate_one(a, 'a');
 			else
-				a = rotate_one(a, 'a');
+				rotate_one(a, 'a');
 		}
 		else
 			swap_one(a, size_a, 'a');
+		a = ft_first(a);
 	}
 }
