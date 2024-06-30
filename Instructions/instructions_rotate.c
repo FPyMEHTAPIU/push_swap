@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:41:33 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/28 16:00:45 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/30 11:12:05 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ void	rrotate_both(t_stack *a, t_stack *b) //, int size_a, int size_b)
 	ft_printf("rrr\n");
 }
 
-void	rotate_one(t_stack *stack, /*const int size,*/ char c)
+t_stack	*rotate_one(t_stack *stack, /*const int size,*/ char c)
 {
-	ft_add_front(&stack, ft_last(stack));
-	ft_delone(ft_last(stack));
+	stack = ft_add_front(&stack, ft_last(stack));
+	//ft_delone(ft_last(stack));
 	/*int	i;
 	int	arr[size];
 
@@ -61,6 +61,7 @@ void	rotate_one(t_stack *stack, /*const int size,*/ char c)
 	}*/
 	if (c != 0)
 		ft_printf("r%c\n", c);
+	return (stack);
 }
 
 void	rotate_both(t_stack *a, t_stack *b) //, int size_a, int size_b)
