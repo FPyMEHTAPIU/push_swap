@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:47:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/27 15:58:07 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/30 18:55:18 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,17 @@ void    swap_one(t_stack *stack, int size, char c)
 		return ;
 	temp_last = stack;
 	temp_prev = stack->prev;
-	stack->last = 0;
+	stack->first = 0;
+	temp_prev->first = 1;
+	if (size == 2)
+	{
+		stack->last = 1;
+		temp_prev->last = 0;
+	}
 	stack = temp_prev;
 	stack->prev = temp_last;
 	stack->next = ft_first(stack);
 	stack->prev->next = stack;
-	stack->last = 1;
 	if (c != 0)
 		ft_printf("s%c\n", c);
 }

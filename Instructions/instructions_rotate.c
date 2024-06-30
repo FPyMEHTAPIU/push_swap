@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:41:33 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/28 16:00:45 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/30 19:06:56 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,24 @@
 
 void	rrotate_one(t_stack *stack, /*const int size,*/ char c)
 {
-	ft_add_back(&stack, ft_first(stack));
-	ft_delone(ft_first(stack));
-	/*while (i < size)
-	{
-		arr[i - 1] = stack[i];
-		i++;
-	}
-	arr[--i] = stack[0];
-	i = 0;
-	while (i < size)
-	{
-		stack[i] = arr[i];
-		i++;
-	}*/
+	t_stack	*temp;
+	t_stack	*first;
+
+	first = ft_first(stack);
+	if (!first)
+		return ;
+	temp = stack;
+	while (temp->last != 1)
+		temp = temp->next;
+	temp->last = 0;
+	first->last = 1;
+	first->first = 0;
+	temp->prev->first = 1;
+	first->prev = temp;
+	temp->next = first;
+	first->next = stack->next;
+	stack = first->next;
+	
 	if (c != 0)
 		ft_printf("rr%c\n", c);
 }
@@ -41,8 +45,8 @@ void	rrotate_both(t_stack *a, t_stack *b) //, int size_a, int size_b)
 
 void	rotate_one(t_stack *stack, /*const int size,*/ char c)
 {
-	ft_add_front(&stack, ft_last(stack));
-	ft_delone(ft_last(stack));
+	stack = ft_add_front(&stack, ft_last(stack));
+	//ft_delone(ft_last(stack));
 	/*int	i;
 	int	arr[size];
 

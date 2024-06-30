@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:39:43 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/28 12:52:10 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/30 17:28:48 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 /* This fuction adds the node to the end of the stack
 It should be used with ft_stack_new(value) */
-void	ft_add_back(t_stack **lst, t_stack *new)
+t_stack	*ft_add_back(t_stack **lst, t_stack *new)
 {
 	t_stack	*temp;
 
 	if (!new)
-		return ;
+		return (*lst);
 	if (!(*lst))
 	{
 		*lst = new;
@@ -27,7 +27,7 @@ void	ft_add_back(t_stack **lst, t_stack *new)
 		(*lst)->last = 1;
 		(*lst)->next = *lst;
 		(*lst)->prev = *lst;
-		return ;
+		return (*lst);
 	}
 	temp = *lst;
 	while (temp->last != 1)
@@ -38,4 +38,5 @@ void	ft_add_back(t_stack **lst, t_stack *new)
 	new->next = *lst;
 	(*lst)->prev = new;
 	temp->next = new;
+	return (*lst);
 }

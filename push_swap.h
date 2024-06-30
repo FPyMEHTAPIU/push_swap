@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:42:42 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/27 15:56:42 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/30 19:05:42 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	swap_both(t_stack *a, t_stack *b, int size_a, int size_b);
 void	push_num(t_stack **s1, t_stack **s2, int *size_s1, int *size_s2);
 void	rotate_one(t_stack *stack, /*const int size,*/ char c);
 void	rotate_both(t_stack *a, t_stack *b); //, int size_a, int size_b);
-void 	rrotate_one(t_stack *stack, /*const int size,*/ char c);
+void	rrotate_one(t_stack *stack, /*const int size,*/ char c);
 void	rrotate_both(t_stack *a, t_stack *b); //, int size_a, int size_b);
 
 /*------SORTING------*/
@@ -55,8 +55,8 @@ void	sorting(t_stack **a, t_stack **b, int *size_a, int *size_b);
 
 /*------STACK HANDLING------*/
 
-void	ft_add_back(t_stack **lst, t_stack *new);
-void	ft_add_front(t_stack **stack, t_stack *new);
+t_stack	*ft_add_back(t_stack **lst, t_stack *new);
+t_stack	*ft_add_front(t_stack **stack, t_stack *new);
 void	ft_delone(t_stack *stack);
 void	ft_clear(t_stack **stack);
 t_stack	*ft_stack_new(int content);
