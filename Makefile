@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/11 12:46:12 by msavelie          #+#    #+#              #
-#    Updated: 2024/06/27 15:33:00 by msavelie         ###   ########.fr        #
+#    Updated: 2024/07/01 12:48:51 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRCS = \
 	${LIST_DIR}/ft_last.c \
 	${LIST_DIR}/ft_stack_new.c \
 	${SORT_DIR}/sort_small.c \
+	${SORT_DIR}/sort_big.c \
 	${SORT_DIR}/moves_calculator.c \
 	${SORT_DIR}/sorting.c
 
