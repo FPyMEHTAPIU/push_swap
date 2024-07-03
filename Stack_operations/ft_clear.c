@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:01:44 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/28 12:07:02 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/03 11:13:31 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,15 @@
 //This function deletes only one passed node from the stack
 void	ft_delone(t_stack *stack)
 {
+	t_stack	*first;
+
 	if (!stack)
 		return ;
 	stack->last = 0;
 	stack->prev->last = 1;
-	stack->prev->next = ft_first(stack);
+	first = ft_first(stack);
+	stack->prev->next = first;
+	first->prev = stack->prev;
 	free(stack);
 }
 //This fuction deletes all nodes from the stack and frees it

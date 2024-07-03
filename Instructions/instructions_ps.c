@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:47:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/30 18:55:18 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:47:12 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,28 @@
 
 void    swap_one(t_stack *stack, int size, char c)
 {
-	t_stack *temp_last;
-	t_stack *temp_prev;
+	t_stack	*temp;
+	t_stack *s_last;
+	t_stack *s_prev;
 
 	if (size <= 1)
 		return ;
-	temp_last = stack;
-	temp_prev = stack->prev;
-	stack->first = 0;
-	temp_prev->first = 1;
+	s_last = ft_last(stack);
+	s_prev = s_last->prev;
+	s_last->last = 0;
+	s_prev->last = 1;
 	if (size == 2)
 	{
 		stack->last = 1;
-		temp_prev->last = 0;
+		s_last->last = 0;
 	}
-	stack = temp_prev;
-	stack->prev = temp_last;
-	stack->next = ft_first(stack);
-	stack->prev->next = stack;
+	temp = s_prev->prev;
+	s_last->next = s_prev;
+	s_last->prev = temp;
+	s_prev->next = stack;
+	s_prev->prev = s_last;
+	temp->next = s_last;
+	stack->prev = s_prev;
 	if (c != 0)
 		ft_printf("s%c\n", c);
 }
@@ -80,7 +84,7 @@ void	push_num(t_stack **s1, t_stack **s2, int *size_s1, int *size_s2)
 {
 	if (*size_s1 == 0)
 		return ;
-	ft_add_back(s2, ft_last(*s1));
+	ft_add_back(s2, ft_stack_new(ft_last(*s1)->value));
 	(*size_s2)++;
 	ft_delone(ft_last(*s1));
 	(*size_s1)--;

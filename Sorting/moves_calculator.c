@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:10:39 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/02 14:38:43 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/03 11:46:30 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,8 @@ void	calculator(t_stack *a, t_stack *b, int size_a, int size_b)
 
 	a = ft_last(a);
 	i = size_a - 1;
+	if (size_b < 2)
+		return ;
 	while (i >= 0)
 	{
 		// compare elements from 'a' to the second stack

@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:41:33 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/30 19:06:56 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/03 17:33:49 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	rrotate_one(t_stack *stack, /*const int size,*/ char c)
 	temp->last = 0;
 	first->last = 1;
 	first->first = 0;
-	temp->prev->first = 1;
+	first->next->first = 1;
 	first->prev = temp;
 	temp->next = first;
-	first->next = stack->next;
-	stack = first->next;
+	/*first->next = stack->next;
+	stack = first->next;*/
 	
 	if (c != 0)
 		ft_printf("rr%c\n", c);
