@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:47:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/03 15:47:12 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:41:20 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	push_num(t_stack **s1, t_stack **s2, int *size_s1, int *size_s2)
 		return ;
 	ft_add_back(s2, ft_stack_new(ft_last(*s1)->value));
 	(*size_s2)++;
-	ft_delone(ft_last(*s1));
+	ft_delone(ft_last(*s1), *size_s1);
 	(*size_s1)--;
 }
 
