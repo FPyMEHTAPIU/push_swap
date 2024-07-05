@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:09:59 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/05 11:45:59 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/05 17:01:20 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 static t_stack	**alloc_stack(t_stack **a, t_stack **b, int *size_a, int *size_b)
 {
-	int	size;
-	int	i;
+	//int	size;
+	//int	i;
 
-	if (*size_a >= 5)
+	/*if (*size_a >= 5)
 		size = 2;
 	else
-		size = (*size_a) - 3;
+		size = (*size_a) - 3;*/
 	b = (t_stack**)malloc(sizeof(t_stack*) * ((*size_a) - 3));
 	if (!b)
 		return (NULL);
 	//*size_b += i;
-	i = 0;
-	while (i++ < size)
-	{
-		push_num(a, b, size_a, size_b);
-		ft_printf("pb\n");
-	}
+	//i = 0;
+	/*while (i++ < size)
+	{*/
+	push_num(a, b, size_a, size_b);
+	ft_printf("pb\n");
+	//}
 	return (b);
 }
 
@@ -128,7 +128,7 @@ void sorting(t_stack **a, t_stack **b, int *size_a, int *size_b)
 	if (!b)
 		return ;
 	while (*size_a > 3)
-		calculator(ft_last(*a), ft_last(*b), *size_a, *size_b);
+		calculator(ft_last(*a), ft_last(*b), size_a, size_b);
 	sorting(a, b, size_a, size_b);
 	while (*size_b)
 	{
