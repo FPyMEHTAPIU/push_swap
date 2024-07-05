@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:09:59 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/03 16:56:45 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/05 11:45:59 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ static int	find_pos_a(int num, t_stack **a, int size_a)
 	value = (*a)->value;
 	while (max != value)
 	{
-		value = (*a)->value;
 		i--;
 		(*a) = (*a)->prev;
+		value = (*a)->value;
 	}
-	return (++i);
+	return (i);
 }
 
 static void	set_a(t_stack **a, int size_a, int pos_a)
@@ -87,7 +87,7 @@ static void	set_a(t_stack **a, int size_a, int pos_a)
 	if (pos_a >= (size_a - 1) / 2)
 	{
 		i = size_a - 1;
-		while (i >= pos_a)
+		while (i > pos_a)
 		{
 			rotate_one(*a, 'a');
 			i--;
@@ -137,6 +137,12 @@ void sorting(t_stack **a, t_stack **b, int *size_a, int *size_b)
 		push_num(b, a, size_b, size_a);
 		ft_printf("pa\n");
 	}
-	while (!is_ordered(*a))
-		set_a(a, *size_a, pos_a + ((*size_a - 1) / 2) + 1);
+	if (pos_a >= ((*size_a) - 1) / 2)
+	{
+		while (!is_ordered(ft_first(*a)))
+			rrotate_one(*a, 'a');
+	}
+	else
+		while (!is_ordered(ft_first(*a)))
+			rotate_one(*a, 'a');
 }

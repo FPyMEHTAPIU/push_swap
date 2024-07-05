@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:42:42 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/04 13:31:21 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/05 11:23:16 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,10 @@
 
 typedef	struct s_stack
 {
-	char			stack;
 	int				value;
-	int				rotation; // if negative - reverse rotation
-	int				index;
 	int				last;
 	int				first;
+	int				index;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }	t_stack;
