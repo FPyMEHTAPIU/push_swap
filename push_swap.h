@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:42:42 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/05 16:41:16 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/07 12:52:57 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,10 @@ void	rrotate_both(t_stack *a, t_stack *b); //, int size_a, int size_b);
 
 /*------SORTING------*/
 
+int		is_ordered(t_stack *s);
+int		is_ordered_b(t_stack *s);
 void	sort_small(t_stack *a, int size_a);
-//void	sort_big(t_stack **a, t_stack **b, int *size_a, int *size_b);
-void	calculator(t_stack *a, t_stack *b, int *size_a, int *size_b);
+void	calculator(t_stack **a, t_stack **b, int *size_a, int *size_b);
 void	sorting(t_stack **a, t_stack **b, int *size_a, int *size_b);
 
 /*------STACK HANDLING------*/

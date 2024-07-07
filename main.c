@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:46:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/27 17:29:43 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:28:14 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,14 @@ int	main(int argc, char *argv[])
 	if (argc < 2)
 		return (0);
 	if (argc == 2)
+	{
 		strs = ft_split(argv[1], ' ');
+		if (!strs || !(*strs))
+		{
+			free(strs);
+			return (0);
+		}
+	}
 	else
 		strs = &argv[1];
 	a = convert_args(strs, &size_a);

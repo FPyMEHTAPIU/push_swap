@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:10:39 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/05 17:00:41 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/07 20:16:37 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ static int	moves_a(t_stack *a, int size_a, int index)
 	temp = copy_stack(ft_first(a), size_a);
 	while (ft_last(*temp)->value != a->value)
 	{
-		if (index > (size_a - 1) / 2)
+		if (index >= (size_a - 1) / 2)
 		{
 			rotate_one(*temp, 0);
 			moves++;
@@ -132,23 +132,24 @@ static int	to_pos(int num)
 static int	find_min(int *a_moves, int *b_moves, int size)
 {
 	int	i;
-	int	min;
-	int	min_ind;
+	int	max;
+	int	max_ind;
 
 	i = size - 1;
-	min = to_pos(a_moves[i]) + to_pos(b_moves[i]);
-	min_ind = i;
+	max = to_pos(a_moves[i]) + to_pos(b_moves[i]);
+	max_ind = i;
 	while (i >= 0)
 	{
-		if (min > (to_pos(a_moves[i]) + to_pos(b_moves[i])))
+		if (max > (to_pos(a_moves[i]) + to_pos(b_moves[i])))
 		{
-			min = to_pos(a_moves[i]) + to_pos(b_moves[i]);
-			min_ind = i;
+			max = to_pos(a_moves[i]) + to_pos(b_moves[i]);
+			max_ind = i;
 		}
 		i--;
 	}
-	return (min_ind);
+	return (max_ind);
 }
+
 static int min_both_rot(int *a, int *b)
 {
 	int	both_moves;
@@ -166,58 +167,89 @@ static int min_both_rot(int *a, int *b)
 	}
 	return (both_moves);
 }
+
+static void	sort_b(t_stack **b, int size)
+{
+	int	max;
+	int	max_ind;
+	int	i;
+
+	*b = ft_first(*b);
+	max = (*b)->value;
+	i = 0;
+	max_ind = 0;
+	while (i < size)
+	{
+		if (max < (*b)->value)
+		{
+			max = (*b)->value;
+			max_ind = i;
+		}
+		i++;
+		*b = (*b)->next;
+	}
+	while (!is_ordered_b(ft_first(*b)))
+	{
+		if (max_ind >= (size - 1) / 2)
+			rotate_one(*b, 'b');
+		else
+			rrotate_one(*b, 'b');
+	}
+}
 /* This function calculates all moves in current situation 
 and returns an index of the lowest movement value */
-void	calculator(t_stack *a, t_stack *b, int *size_a, int *size_b)
+void	calculator(t_stack **a, t_stack **b, int *size_a, int *size_b)
 {
 	int	b_moves[*size_a];
 	int	a_moves[*size_a];
 	int	i;
 	int	min_moves_ind;
 
-	a = ft_last(a);
-	i = (*size_a) - 1;
 	if (*size_b < 1)
 		return ;
+	*a = ft_last(*a);
+	*b = ft_last(*b);
+	i = (*size_a) - 1;
 	while (i >= 0)
 	{
 		// compare elements from 'a' to the second stack
-		b_moves[i] = moves_b(a->value, ft_last(b), *size_b);
-		a_moves[i] = moves_a(a, *size_a, i) + 1;
+		b_moves[i] = moves_b((*a)->value, ft_last(*b), *size_b);
+		a_moves[i] = moves_a((*a), *size_a, i);
 		i--;
-		a = a->prev;
+		(*a) = (*a)->prev;
 	}
 	// Find minimum number in array
 	min_moves_ind = find_min(a_moves, b_moves, *size_a);
-	a = ft_last(a);
+	*a = ft_last(*a);
+	*b = ft_last(*b);
 	i = (*size_a) - 1;
 	while (i-- != min_moves_ind)
-		a = a->prev;
+		*a = (*a)->prev;
 	if (a_moves[min_moves_ind] < 0 && b_moves[min_moves_ind] < 0)
 	{
-		// Do subtraction max - min and then do rest rra/rrb
+		// Do subtraction max - max and then do rest rra/rrb
 		i = min_both_rot(&a_moves[min_moves_ind], &b_moves[min_moves_ind]);
 		while (i--)
-			rrotate_both(a, b);
+			rrotate_both(*a, *b);
 		i = a_moves[min_moves_ind];
 		while (i--)
-			rrotate_one(a, 'a');
+			rrotate_one(*a, 'a');
 		i = b_moves[min_moves_ind];
 		while (i--)
-			rrotate_one(b, 'b');
+			rrotate_one(*b, 'b');
 	}
 	else if (a_moves[min_moves_ind] > 0 && b_moves[min_moves_ind] > 0)
 	{
-		// Do subtraction max - min and then do rest ra/rb
+		// Do subtraction max - max and then do rest ra/rb
 		i = min_both_rot(&a_moves[min_moves_ind], &b_moves[min_moves_ind]);
 		while (i--)
-			rotate_both(a, b);
+			rotate_both(*a, *b);
 		i = a_moves[min_moves_ind];
 		while (i--)
-			rotate_one(a, 'a');
+			rotate_one(*a, 'a');
 		i = b_moves[min_moves_ind];
 		while (i--)
-			rotate_one(b, 'b');
+			rotate_one(*b, 'b');
 	}
 	else
 	{
@@ -226,27 +258,26 @@ void	calculator(t_stack *a, t_stack *b, int *size_a, int *size_b)
 		{
 			i *= -1;
 			while (i--)
-				rrotate_one(b, 'b');
+				rrotate_one(*b, 'b');
 		}
 		else
 		{
 			while (i--)
-				rotate_one(b, 'b');
+				rotate_one(*b, 'b');
 		}
 		i = a_moves[min_moves_ind];
 		if (i < 0)
 		{
 			i *= -1;
 			while (i--)
-				rrotate_one(a, 'b');
+				rrotate_one(*a, 'a');
 		}
 		else
-		{
 			while (i--)
-				rotate_one(a, 'b');
-		}
+				rotate_one(*a, 'a');
 	}
-	push_num(&a, &b, size_a, size_b);
+	push_num(a, b, size_a, size_b);
 	ft_printf("pb\n");
-	// TODO: Check order when size_a == 3 after push!!!
+	if (*size_a == 3)
+		sort_b(b, *size_b);
 }
