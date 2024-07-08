@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:09:59 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/07 20:23:33 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:05:36 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ static int	find_pos_a(int num, t_stack **a, int size_a)
 	i = size_a - 1;
 	(*a) = ft_last(*a);
 	while (max != (*a)->value)
+	{
 		i--;
+		(*a) = (*a)->prev;
+	}
 	return (i);
 }
 
@@ -102,7 +105,8 @@ void sorting(t_stack **a, t_stack **b, int *size_a, int *size_b)
 		return ;
 	while (*size_a > 3)
 		calculator(a, b, size_a, size_b);
-	sorting(a, b, size_a, size_b);
+	sort_small(*a, *size_a);
+	//sorting(a, b, size_a, size_b);
 	while (*size_b)
 	{
 		*b = ft_last(*b);

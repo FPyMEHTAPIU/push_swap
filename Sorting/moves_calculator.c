@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:10:39 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/07 20:16:37 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:40:59 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static int	find_max_index(t_stack *b, int size_b)
 	int	max;
 	int	i;
 
+	b = ft_first(b);
 	max = b->index;
 	i = size_b - 1;
 	while (i >= 0)
