@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:10:39 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/09 14:32:31 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:37:54 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static t_stack	**copy_stack(t_stack *stack, int size)
 	if (stack->first == 1 && stack->last == 1)
 	{
 		ft_add_back(arr, ft_stack_new(stack->value));
+		(*arr)->first = 1;
+		(*arr)->last = 1;
 		return (arr);
 	}
 	i = 0;
@@ -58,12 +60,34 @@ static int	find_max_value(t_stack *s, int size, int *min_ind)
 	return (max);
 }
 
+static int	find_min_value(t_stack *s, int size, int *min_ind)
+{
+	int	max;
+	int	i;
+
+	s = ft_first(s);
+	max = s->value;
+	i = 0;
+	while (i < size)
+	{
+		if (max > s->value)
+		{
+			max = s->value;
+			*min_ind = i;
+		}
+		i++;
+		s = s->next;
+	}
+	return (max);
+}
+
 static int	find_min_index(t_stack *b, int size_b)
 {
 	int	max;
 	int	i;
 
-	b = ft_first(b);
+	//b = ft_first(b);
+	b = ft_last(b);
 	max = b->index;
 	i = size_b - 1;
 	while (i >= 0)
@@ -71,7 +95,8 @@ static int	find_min_index(t_stack *b, int size_b)
 		if (b->index >= 0)
 			max = b->index;
 		b->index = 0;
-		b = b->next;
+		//b = b->next;
+		b = b->prev;
 		i--;
 	}
 	return (max);
@@ -86,9 +111,31 @@ static int	moves_b(int num, t_stack *b, int size_b)
 	int		index;
 
 	j = size_b - 1;
-	max = ft_last(b)->value;
 	index = 0;
-	while (j >= 0)
+	max = find_min_value(b, size_b, &index);
+	temp_arr = copy_stack(ft_first(b), size_b);
+	*temp_arr = ft_last(*temp_arr);
+	while (j >= 0 && size_b > 1)
+	{
+		if (max < (*temp_arr)->value && (*temp_arr)->value < num)
+		{
+			max = (*temp_arr)->value;
+			(*temp_arr)->index = j;
+		}
+		else
+			(*temp_arr)->index = -1;
+		j--;
+		*temp_arr = (*temp_arr)->prev;
+	}
+	if (max == find_min_value(b, size_b, &index))
+	{
+		*temp_arr = ft_last(*temp_arr);
+		j = size_b - 1;
+		while (j-- < index)
+			*temp_arr = (*temp_arr)->prev;
+		(*temp_arr)->index = index;
+	}
+	/*while (j >= 0)
 	{
 		if (max < b->value && b->value < num)
 		{
@@ -99,16 +146,16 @@ static int	moves_b(int num, t_stack *b, int size_b)
 			b->index = -1;
 		j--;
 		b = b->prev;
-	}
+	}*/
 	if (max > num)
-		max = find_max_value(b, size_b, &index);
+		max = find_max_value(*temp_arr, size_b, &index);
 	else
-		index = find_min_index(b, size_b);
-	temp_arr = copy_stack(ft_first(b), size_b);
+		index = find_min_index(*temp_arr, size_b);
+	//temp_arr = copy_stack(ft_first(b), size_b);
 	j = 0;
 	while (max != ft_last(*temp_arr)->value)
 	{
-		if (index > (size_b - 1) / 2)
+		if (index >= (size_b - 1) / 2)
 		{
 			rotate_one(*temp_arr, 0);
 			j++;
@@ -174,7 +221,7 @@ static int	find_min(int *a_moves, int *b_moves, int size)
 			else
 				moves = a_moves[i] + (b_moves[i] - a_moves[i]);
 		}
-		if (a_moves[i] < 0 && b_moves[i] < 0)
+		else if (a_moves[i] < 0 && b_moves[i] < 0)
 		{
 			if (a_moves[i] <= b_moves[i])
 				moves = to_pos(b_moves[i]) + (to_pos(a_moves[i]) - to_pos(b_moves[i]));
@@ -200,13 +247,15 @@ static int min_both_rot(int *a, int *b)
 	both_moves = 0;
 	if (to_pos(*a) >= to_pos(*b))
 	{
-		both_moves = to_pos(*a) - to_pos(*b);
+		both_moves = to_pos(*b);
 		(*a) -= (*b);
+		*b = 0;
 	}
 	else
 	{
-		both_moves = to_pos(*b) - to_pos(*a);
+		both_moves = to_pos(*a);
 		(*b) -= (*a);
+		*a = 0;
 	}
 	return (both_moves);
 }
@@ -254,26 +303,26 @@ void	calculator(t_stack **a, t_stack **b, int *size_a, int *size_b)
 	if (a_moves[min_moves_ind] < 0 && b_moves[min_moves_ind] < 0)
 	{
 		// Do subtraction max - max and then do rest rra/rrb
-		i = min_both_rot(&a_moves[min_moves_ind], &b_moves[min_moves_ind]);
+		i = to_pos(min_both_rot(&a_moves[min_moves_ind], &b_moves[min_moves_ind]));
 		while (i--)
 			rrotate_both(*a, *b);
-		i = a_moves[min_moves_ind];
+		i = to_pos(a_moves[min_moves_ind]);
 		while (i--)
 			rrotate_one(*a, 'a');
-		i = b_moves[min_moves_ind];
+		i = to_pos(b_moves[min_moves_ind]);
 		while (i--)
 			rrotate_one(*b, 'b');
 	}
 	else if (a_moves[min_moves_ind] > 0 && b_moves[min_moves_ind] > 0)
 	{
 		// Do subtraction max - max and then do rest ra/rb
-		i = min_both_rot(&a_moves[min_moves_ind], &b_moves[min_moves_ind]);
+		i = to_pos(min_both_rot(&a_moves[min_moves_ind], &b_moves[min_moves_ind]));
 		while (i--)
 			rotate_both(*a, *b);
-		i = a_moves[min_moves_ind];
+		i = to_pos(a_moves[min_moves_ind]);
 		while (i--)
 			rotate_one(*a, 'a');
-		i = b_moves[min_moves_ind];
+		i = to_pos(b_moves[min_moves_ind]);
 		while (i--)
 			rotate_one(*b, 'b');
 	}
