@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:01:44 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/08 14:48:22 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:02:42 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,22 @@ void	ft_delone(t_stack *stack, int size)
 	stack = first;
 }
 //This fuction deletes all nodes from the stack and frees it
-void	ft_clear(t_stack **stack)
+void	ft_clear(t_stack **stack, int size)
 {
 	t_stack	*temp;
 
+	*stack = ft_last(*stack);
 	if (!stack)
 		return ;
-	while ((*stack)->last != 1)
+	while (size - 1 > 0 /*(*stack)->first != 1*/)
 	{
-		temp = (*stack)->next;
-		free(*stack);
+		temp = (*stack)->prev;
+		ft_delone(*stack, size);
+		/*free(*stack);
+		*stack = NULL;*/
 		*stack = temp;
+		size--;
 	}
+	//free(*stack);
 	free(stack);
 }

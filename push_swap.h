@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:42:42 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/07 12:52:57 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/11 14:45:34 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	sorting(t_stack **a, t_stack **b, int *size_a, int *size_b);
 t_stack	*ft_add_back(t_stack **lst, t_stack *new);
 t_stack	*ft_add_front(t_stack **stack, t_stack *new);
 void	ft_delone(t_stack *stack, int size);
-void	ft_clear(t_stack **stack);
+void	ft_clear(t_stack **stack, int size);
 t_stack	*ft_stack_new(int content);
 t_stack	*ft_last(t_stack *lst);
 t_stack	*ft_first(t_stack *lst);

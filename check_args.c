@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:05:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/08 14:30:57 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/11 12:58:32 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	check_doubles(t_stack *arr, int size)
 
 	temp1 = arr;
 	i = 0;
-	while (temp1->last != 1 && i < size)
+	while (/*temp1->last != 1 &&*/ i < size)
 	{
 		j = 0;
 		temp2 = arr;

@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:10:39 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/10 16:37:54 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:00:36 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,23 +135,10 @@ static int	moves_b(int num, t_stack *b, int size_b)
 			*temp_arr = (*temp_arr)->prev;
 		(*temp_arr)->index = index;
 	}
-	/*while (j >= 0)
-	{
-		if (max < b->value && b->value < num)
-		{
-			max = b->value;
-			b->index = j;
-		}
-		else
-			b->index = -1;
-		j--;
-		b = b->prev;
-	}*/
 	if (max > num)
 		max = find_max_value(*temp_arr, size_b, &index);
 	else
 		index = find_min_index(*temp_arr, size_b);
-	//temp_arr = copy_stack(ft_first(b), size_b);
 	j = 0;
 	while (max != ft_last(*temp_arr)->value)
 	{
@@ -166,7 +153,7 @@ static int	moves_b(int num, t_stack *b, int size_b)
 			j--;
 		}
 	}
-	ft_clear(temp_arr);
+	ft_clear(temp_arr, size_b);
 	return (j);
 }
 
@@ -190,7 +177,7 @@ static int	moves_a(t_stack *a, int size_a, int index)
 			moves--;
 		}
 	}
-	ft_clear(temp);
+	ft_clear(temp, size_a);
 	return (moves);
 }
 
@@ -217,16 +204,16 @@ static int	find_min(int *a_moves, int *b_moves, int size)
 		if (a_moves[i] > 0 && b_moves[i] > 0)
 		{
 			if (a_moves[i] >= b_moves[i])
-				moves = b_moves[i] + (a_moves[i] - b_moves[i]);
+				moves = a_moves[i]; //b_moves[i] + (a_moves[i] - b_moves[i]);
 			else
-				moves = a_moves[i] + (b_moves[i] - a_moves[i]);
+				moves = b_moves[i]; //a_moves[i] + (b_moves[i] - a_moves[i]);
 		}
 		else if (a_moves[i] < 0 && b_moves[i] < 0)
 		{
 			if (a_moves[i] <= b_moves[i])
-				moves = to_pos(b_moves[i]) + (to_pos(a_moves[i]) - to_pos(b_moves[i]));
+				moves = to_pos(a_moves[i]); //to_pos(b_moves[i]) + (to_pos(a_moves[i]) - to_pos(b_moves[i]));
 			else
-				moves = to_pos(a_moves[i]) + (to_pos(b_moves[i]) - to_pos(a_moves[i]));
+				moves = to_pos(b_moves[i]); //to_pos(a_moves[i]) + (to_pos(b_moves[i]) - to_pos(a_moves[i]));
 		}
 		else
 			moves = to_pos(a_moves[i]) + to_pos(b_moves[i]);
