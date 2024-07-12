@@ -6,14 +6,14 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:10:39 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/11 15:00:36 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/12 16:29:28 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
 // This function just copies a stack to the temp one for the further calculations
-static t_stack	**copy_stack(t_stack *stack, int size)
+/*static t_stack	**copy_stack(t_stack *stack, int size)
 {
 	t_stack	**arr;
 	int		i;
@@ -37,7 +37,7 @@ static t_stack	**copy_stack(t_stack *stack, int size)
 		i++;
 	}
 	return (arr);
-}
+}*/
 
 static int	find_max_value(t_stack *s, int size, int *min_ind)
 {
@@ -62,44 +62,44 @@ static int	find_max_value(t_stack *s, int size, int *min_ind)
 
 static int	find_min_value(t_stack *s, int size, int *min_ind)
 {
-	int	max;
+	int	min;
 	int	i;
 
 	s = ft_first(s);
-	max = s->value;
+	min = s->value;
 	i = 0;
 	while (i < size)
 	{
-		if (max > s->value)
+		if (min > s->value)
 		{
-			max = s->value;
+			min = s->value;
 			*min_ind = i;
 		}
 		i++;
 		s = s->next;
 	}
-	return (max);
+	return (min);
 }
 
 static int	find_min_index(t_stack *b, int size_b)
 {
-	int	max;
+	int	min;
 	int	i;
 
 	//b = ft_first(b);
 	b = ft_last(b);
-	max = b->index;
+	min = b->index;
 	i = size_b - 1;
 	while (i >= 0)
 	{
 		if (b->index >= 0)
-			max = b->index;
+			min = b->index;
 		b->index = 0;
 		//b = b->next;
 		b = b->prev;
 		i--;
 	}
-	return (max);
+	return (min);
 }
 
 // This function compares a number from stack with all numbers in another stack
@@ -107,15 +107,15 @@ static int	moves_b(int num, t_stack *b, int size_b)
 {
 	int		j;
 	int		max;
-	t_stack	**temp_arr;
+	//t_stack	**temp_arr;
 	int		index;
 
 	j = size_b - 1;
 	index = 0;
 	max = find_min_value(b, size_b, &index);
-	temp_arr = copy_stack(ft_first(b), size_b);
-	*temp_arr = ft_last(*temp_arr);
-	while (j >= 0 && size_b > 1)
+	//temp_arr = copy_stack(ft_first(b), size_b);
+	//*temp_arr = ft_last(*temp_arr);
+	/*while (j >= 0 && size_b > 1)
 	{
 		if (max < (*temp_arr)->value && (*temp_arr)->value < num)
 		{
@@ -134,8 +134,31 @@ static int	moves_b(int num, t_stack *b, int size_b)
 		while (j-- < index)
 			*temp_arr = (*temp_arr)->prev;
 		(*temp_arr)->index = index;
+	}*/
+	b = ft_last(b);
+	while (j >= 0 && size_b > 1)
+	{
+		if (max < b->value && b->value < num)
+		{
+			max = b->value;
+			b->index = j;
+		}
+		else
+			b->index = -1;
+		j--;
+		b = b->prev;
 	}
-	if (max > num)
+	if (max == find_min_value(b, size_b, &index))
+	{
+		b = ft_last(b);
+		j = size_b - 1;
+		while (j-- < index)
+			b = b->prev;
+		b->index = index;
+		if (num < max)
+			index--;
+	}
+	/*if (max > num)
 		max = find_max_value(*temp_arr, size_b, &index);
 	else
 		index = find_min_index(*temp_arr, size_b);
@@ -153,31 +176,68 @@ static int	moves_b(int num, t_stack *b, int size_b)
 			j--;
 		}
 	}
-	ft_clear(temp_arr, size_b);
-	return (j);
-}
-
-static int	moves_a(t_stack *a, int size_a, int index)
-{
-	t_stack	**temp;
-	int		moves;
-
-	moves = 0;
-	temp = copy_stack(ft_first(a), size_a);
-	while (ft_last(*temp)->value != a->value)
+	ft_clear(temp_arr, size_b);*/
+	else if (max > num)
+		max = find_max_value(b, size_b, &index);
+	else
+		index = find_min_index(b, size_b);
+	j = 0;
+	while (index < size_b - 1 && index >= 0)
 	{
-		if (index >= (size_a - 1) / 2)
+		if (index >= (size_b - 1) / 2)
 		{
-			rotate_one(*temp, 0);
-			moves++;
+			index++;
+			j++;
 		}
 		else
 		{
-			rrotate_one(*temp, 0);
-			moves--;
+			index--;
+			j--;
 		}
 	}
-	ft_clear(temp, size_a);
+	return (j);
+}
+
+static int	moves_a(/*t_stack *a, */int size_a, int index)
+{
+	//t_stack	**temp;
+	int		moves;
+
+	moves = 0;
+	//temp = copy_stack(ft_first(a), size_a);
+	/*if (index >= (size_a - 1) / 2)
+	{
+		while (index <= size_a && index >= 0)
+		{
+			moves++;
+			index++;
+		}
+	}
+	else
+	{
+		while (index <= size_a && index >= 0)
+		{
+			moves--;
+			index--;
+		}
+		moves--;
+	}*/
+	while (index < size_a - 1 && index >= 0)
+	{
+		if (index >= (size_a - 1) / 2)
+		{
+			//rotate_one(*temp, 0);
+			moves++;
+			index++;
+		}
+		else
+		{
+			//rrotate_one(*temp, 0);
+			moves--;
+			index--;
+		}
+	}
+	//ft_clear(temp, size_a);
 	return (moves);
 }
 
@@ -279,7 +339,7 @@ void	calculator(t_stack **a, t_stack **b, int *size_a, int *size_b)
 	{
 		// compare elements from 'a' to the second stack
 		b_moves[i] = moves_b((*a)->value, ft_last(*b), *size_b);
-		a_moves[i] = moves_a((*a), *size_a, i);
+		a_moves[i] = moves_a(/*(*a),*/ *size_a, i);
 		i--;
 		(*a) = (*a)->prev;
 	}
