@@ -6,38 +6,11 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:10:39 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/12 16:29:28 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/12 17:07:44 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-// This function just copies a stack to the temp one for the further calculations
-/*static t_stack	**copy_stack(t_stack *stack, int size)
-{
-	t_stack	**arr;
-	int		i;
-
-	arr = (t_stack**)malloc(sizeof(t_stack*) * size);
-	if (!arr)
-		return (NULL);
-	*arr = NULL;
-	if (stack->first == 1 && stack->last == 1)
-	{
-		ft_add_back(arr, ft_stack_new(stack->value));
-		(*arr)->first = 1;
-		(*arr)->last = 1;
-		return (arr);
-	}
-	i = 0;
-	while (i < size)
-	{
-		ft_add_back(arr, ft_stack_new(stack->value));
-		stack = stack->next;
-		i++;
-	}
-	return (arr);
-}*/
 
 static int	find_max_value(t_stack *s, int size, int *min_ind)
 {
@@ -86,7 +59,6 @@ static int	find_min_index(t_stack *b, int size_b)
 	int	min;
 	int	i;
 
-	//b = ft_first(b);
 	b = ft_last(b);
 	min = b->index;
 	i = size_b - 1;
@@ -95,7 +67,6 @@ static int	find_min_index(t_stack *b, int size_b)
 		if (b->index >= 0)
 			min = b->index;
 		b->index = 0;
-		//b = b->next;
 		b = b->prev;
 		i--;
 	}
@@ -107,34 +78,11 @@ static int	moves_b(int num, t_stack *b, int size_b)
 {
 	int		j;
 	int		max;
-	//t_stack	**temp_arr;
 	int		index;
 
 	j = size_b - 1;
 	index = 0;
 	max = find_min_value(b, size_b, &index);
-	//temp_arr = copy_stack(ft_first(b), size_b);
-	//*temp_arr = ft_last(*temp_arr);
-	/*while (j >= 0 && size_b > 1)
-	{
-		if (max < (*temp_arr)->value && (*temp_arr)->value < num)
-		{
-			max = (*temp_arr)->value;
-			(*temp_arr)->index = j;
-		}
-		else
-			(*temp_arr)->index = -1;
-		j--;
-		*temp_arr = (*temp_arr)->prev;
-	}
-	if (max == find_min_value(b, size_b, &index))
-	{
-		*temp_arr = ft_last(*temp_arr);
-		j = size_b - 1;
-		while (j-- < index)
-			*temp_arr = (*temp_arr)->prev;
-		(*temp_arr)->index = index;
-	}*/
 	b = ft_last(b);
 	while (j >= 0 && size_b > 1)
 	{
@@ -158,25 +106,6 @@ static int	moves_b(int num, t_stack *b, int size_b)
 		if (num < max)
 			index--;
 	}
-	/*if (max > num)
-		max = find_max_value(*temp_arr, size_b, &index);
-	else
-		index = find_min_index(*temp_arr, size_b);
-	j = 0;
-	while (max != ft_last(*temp_arr)->value)
-	{
-		if (index >= (size_b - 1) / 2)
-		{
-			rotate_one(*temp_arr, 0);
-			j++;
-		}
-		else
-		{
-			rrotate_one(*temp_arr, 0);
-			j--;
-		}
-	}
-	ft_clear(temp_arr, size_b);*/
 	else if (max > num)
 		max = find_max_value(b, size_b, &index);
 	else
@@ -200,52 +129,46 @@ static int	moves_b(int num, t_stack *b, int size_b)
 
 static int	moves_a(/*t_stack *a, */int size_a, int index)
 {
-	//t_stack	**temp;
 	int		moves;
 
 	moves = 0;
-	//temp = copy_stack(ft_first(a), size_a);
-	/*if (index >= (size_a - 1) / 2)
-	{
-		while (index <= size_a && index >= 0)
-		{
-			moves++;
-			index++;
-		}
-	}
-	else
-	{
-		while (index <= size_a && index >= 0)
-		{
-			moves--;
-			index--;
-		}
-		moves--;
-	}*/
 	while (index < size_a - 1 && index >= 0)
 	{
 		if (index >= (size_a - 1) / 2)
 		{
-			//rotate_one(*temp, 0);
 			moves++;
 			index++;
 		}
 		else
 		{
-			//rrotate_one(*temp, 0);
 			moves--;
 			index--;
 		}
 	}
-	//ft_clear(temp, size_a);
 	return (moves);
 }
 
-static int	to_pos(int num)
+static int	set_moves(int *a_moves, int *b_moves, int i)
 {
-	if (num < 0)
-		num *= -1;
-	return (num);
+	int	moves;
+
+	if (a_moves[i] > 0 && b_moves[i] > 0)
+	{
+		if (a_moves[i] >= b_moves[i])
+			moves = a_moves[i];
+		else
+			moves = b_moves[i];
+	}
+	else if (a_moves[i] < 0 && b_moves[i] < 0)
+	{
+		if (a_moves[i] <= b_moves[i])
+			moves = to_pos(a_moves[i]);
+		else
+			moves = to_pos(b_moves[i]);
+	}
+	else
+		moves = to_pos(a_moves[i]) + to_pos(b_moves[i]);
+	return (moves);
 }
 
 //This function returns the index of element with the cheapest movement 
@@ -261,22 +184,7 @@ static int	find_min(int *a_moves, int *b_moves, int size)
 	min_ind = i;
 	while (i >= 0)
 	{
-		if (a_moves[i] > 0 && b_moves[i] > 0)
-		{
-			if (a_moves[i] >= b_moves[i])
-				moves = a_moves[i]; //b_moves[i] + (a_moves[i] - b_moves[i]);
-			else
-				moves = b_moves[i]; //a_moves[i] + (b_moves[i] - a_moves[i]);
-		}
-		else if (a_moves[i] < 0 && b_moves[i] < 0)
-		{
-			if (a_moves[i] <= b_moves[i])
-				moves = to_pos(a_moves[i]); //to_pos(b_moves[i]) + (to_pos(a_moves[i]) - to_pos(b_moves[i]));
-			else
-				moves = to_pos(b_moves[i]); //to_pos(a_moves[i]) + (to_pos(b_moves[i]) - to_pos(a_moves[i]));
-		}
-		else
-			moves = to_pos(a_moves[i]) + to_pos(b_moves[i]);
+		moves = set_moves(a_moves, b_moves, i);
 		if (max > moves)
 		{
 			max = moves;
@@ -329,6 +237,7 @@ void	calculator(t_stack **a, t_stack **b, int *size_a, int *size_b)
 	int	a_moves[*size_a];
 	int	i;
 	int	min_moves_ind;
+	//t_calc	*holder;
 
 	if (*size_b < 1)
 		return ;
@@ -337,14 +246,20 @@ void	calculator(t_stack **a, t_stack **b, int *size_a, int *size_b)
 	i = (*size_a) - 1;
 	while (i >= 0)
 	{
-		// compare elements from 'a' to the second stack
 		b_moves[i] = moves_b((*a)->value, ft_last(*b), *size_b);
-		a_moves[i] = moves_a(/*(*a),*/ *size_a, i);
+		a_moves[i] = moves_a(*size_a, i);
 		i--;
 		(*a) = (*a)->prev;
 	}
-	// Find minimum number in array
 	min_moves_ind = find_min(a_moves, b_moves, *size_a);
+	/*holder = malloc(sizeof(t_calc));
+	if (!holder)
+		return ;
+	holder->a = a;
+	holder->b = b;
+	holder->a_moves = a_moves;
+	holder->b_moves = b_moves;
+	holder->min_moves_ind = min_moves_ind;*/
 	*a = ft_last(*a);
 	*b = ft_last(*b);
 	if (a_moves[min_moves_ind] < 0 && b_moves[min_moves_ind] < 0)
@@ -359,6 +274,7 @@ void	calculator(t_stack **a, t_stack **b, int *size_a, int *size_b)
 		i = to_pos(b_moves[min_moves_ind]);
 		while (i--)
 			rrotate_one(*b, 'b');
+		//both_neg_actions(holder);
 	}
 	else if (a_moves[min_moves_ind] > 0 && b_moves[min_moves_ind] > 0)
 	{
@@ -400,6 +316,7 @@ void	calculator(t_stack **a, t_stack **b, int *size_a, int *size_b)
 	}
 	push_num(a, b, size_a, size_b);
 	ft_printf("pb\n");
+	//free(holder);
 	if (*size_a == 3)
 		sort_b(b, *size_b);
 }

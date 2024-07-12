@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/11 12:46:12 by msavelie          #+#    #+#              #
-#    Updated: 2024/07/07 12:03:57 by msavelie         ###   ########.fr        #
+#    Updated: 2024/07/12 17:04:48 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,10 @@ SRCS = \
 	${LIST_DIR}/ft_stack_new.c \
 	${SORT_DIR}/sort_small.c \
 	${SORT_DIR}/moves_calculator.c \
+	${SORT_DIR}/rotate_actions.c \
 	${SORT_DIR}/sorting.c \
-	${SORT_DIR}/is_ordered.c
+	${SORT_DIR}/is_ordered.c \
+	${SORT_DIR}/to_pos.c
 
 OBJS = $(SRCS:.c=.o)
 
