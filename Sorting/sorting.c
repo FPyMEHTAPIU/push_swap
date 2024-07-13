@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:09:59 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/10 12:38:42 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/14 13:35:54 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ void sorting(t_stack **a, t_stack **b, int *size_a, int *size_b)
 {
 	int	pos_a;
 
+	if (is_ordered(*a))
+		return ;
 	if (*size_a <= 3)
 	{
 		sort_small(*a, *size_a);
@@ -110,7 +112,6 @@ void sorting(t_stack **a, t_stack **b, int *size_a, int *size_b)
 	while (*size_a > 3)
 		calculator(a, b, size_a, size_b);
 	sort_small(*a, *size_a);
-	//sorting(a, b, size_a, size_b);
 	while (*size_b)
 	{
 		*b = ft_last(*b);
@@ -122,8 +123,8 @@ void sorting(t_stack **a, t_stack **b, int *size_a, int *size_b)
 	}
 	if (pos_a >= ((*size_a) - 1) / 2)
 		while (!is_ordered(ft_first(*a)))
-			rrotate_one(*a, 'a');
+			rotate_one(*a, 'a');
 	else
 		while (!is_ordered(ft_first(*a)))
-			rotate_one(*a, 'a');
+			rrotate_one(*a, 'a');
 }

@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:05:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/11 12:58:32 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/13 14:21:51 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static int	check_range(t_stack *arr, int size, char **argv)
 
 	i = 0;
 	temp = arr;
-	while (i < size && temp->last != 1)
+	while (i < size /*&& temp->last != 1*/)
 	{
 		//ft_printf("i = %d, arr[i] = %d, argv[i]: %s\n", i, arr[i], argv[i]);
 		if ((temp->value == -1 && ft_strncmp(argv[size - 1 - i], "-1", 2) != 0))

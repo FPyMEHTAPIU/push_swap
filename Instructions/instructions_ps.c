@@ -6,15 +6,28 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:47:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/11 12:40:20 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/13 14:15:04 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void    swap_one(t_stack *stack, int size, char c)
+static void	change_ptrs(t_stack *stack, t_stack *s_last, t_stack *s_prev)
 {
 	t_stack	*temp;
+
+	temp = s_prev->prev;
+	s_last->next = s_prev;
+	s_last->prev = temp;
+	s_prev->next = stack;
+	s_prev->prev = s_last;
+	temp->next = s_last;
+	stack->prev = s_prev;
+}
+
+void    swap_one(t_stack *stack, int size, char c)
+{
+	
 	t_stack *s_last;
 	t_stack *s_prev;
 
@@ -26,16 +39,11 @@ void    swap_one(t_stack *stack, int size, char c)
 	s_prev->last = 1;
 	if (size == 2)
 	{
-		stack->last = 1;
-		s_last->last = 0;
+		s_prev->first = 0;
+		s_last->first = 1;
 	}
-	temp = s_prev->prev;
-	s_last->next = s_prev;
-	s_last->prev = temp;
-	s_prev->next = stack;
-	s_prev->prev = s_last;
-	temp->next = s_last;
-	stack->prev = s_prev;
+	else
+		change_ptrs(stack, s_last, s_prev);
 	if (c != 0)
 		ft_printf("s%c\n", c);
 }
