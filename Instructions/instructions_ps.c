@@ -6,12 +6,13 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:47:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/13 14:15:04 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/15 18:43:50 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
+// This function changes pointer during swap action
 static void	change_ptrs(t_stack *stack, t_stack *s_last, t_stack *s_prev)
 {
 	t_stack	*temp;
@@ -25,11 +26,12 @@ static void	change_ptrs(t_stack *stack, t_stack *s_last, t_stack *s_prev)
 	stack->prev = s_prev;
 }
 
-void    swap_one(t_stack *stack, int size, char c)
+/* This function swap one element at the top in passed stack 
+with the previous one and prints message */
+void	swap_one(t_stack *stack, int size, char c)
 {
-	
-	t_stack *s_last;
-	t_stack *s_prev;
+	t_stack	*s_last;
+	t_stack	*s_prev;
 
 	if (size <= 1)
 		return ;
@@ -48,6 +50,8 @@ void    swap_one(t_stack *stack, int size, char c)
 		ft_printf("s%c\n", c);
 }
 
+/* This function swap one element at the top in both stacks 
+with the previous one and prints message */
 void	swap_both(t_stack *a, t_stack *b, int size_a, int size_b)
 {
 	swap_one(a, size_a, 0);
@@ -69,4 +73,3 @@ void	push_num(t_stack **s1, t_stack **s2, int *size_s1, int *size_s2)
 		free(s1);
 	(*size_s1)--;
 }
-

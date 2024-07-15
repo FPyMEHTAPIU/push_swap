@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/11 12:46:12 by msavelie          #+#    #+#              #
-#    Updated: 2024/07/12 17:04:48 by msavelie         ###   ########.fr        #
+#    Updated: 2024/07/15 19:06:25 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,16 +23,19 @@ SRCS = \
 	${INSTR_DIR}/instructions_ps.c  \
 	${INSTR_DIR}/instructions_rotate.c \
 	${LIST_DIR}/ft_add_back.c \
-	${LIST_DIR}/ft_add_front.c \
+	${LIST_DIR}/ft_alloc_stack.c \
 	${LIST_DIR}/ft_clear.c \
 	${LIST_DIR}/ft_first.c \
 	${LIST_DIR}/ft_last.c \
 	${LIST_DIR}/ft_stack_new.c \
+	${LIST_DIR}/holder.c \
 	${SORT_DIR}/sort_small.c \
+	${SORT_DIR}/moves_ab.c \
 	${SORT_DIR}/moves_calculator.c \
 	${SORT_DIR}/rotate_actions.c \
 	${SORT_DIR}/sorting.c \
 	${SORT_DIR}/is_ordered.c \
+	${SORT_DIR}/max_min.c \
 	${SORT_DIR}/to_pos.c
 
 OBJS = $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:24:59 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/18 19:37:50 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/15 18:14:53 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static int	check_next_char(char sym, va_list ptr, int fd)
 	else if (sym == 'd' || sym == 'i')
 		len += ft_fprint_hex((long) va_arg(ptr, int), 10, sym, fd);
 	else if (sym == 'u')
-		len += ft_fprint_hex((unsigned long) va_arg(ptr, unsigned int), 10, sym, fd);
+		len += ft_fprint_hex((unsigned long) va_arg(ptr, unsigned int),
+				10, sym, fd);
 	else if (sym == 'x' || sym == 'X')
 		len += ft_fprint_hex((long) va_arg(ptr, unsigned int), 16, sym, fd);
 	else

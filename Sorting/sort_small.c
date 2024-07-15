@@ -6,12 +6,13 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:57:19 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/08 14:55:51 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/15 18:17:07 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
+// This function sorts stack 'a' if there are only 3 numbers
 void	sort_small(t_stack *a, int size_a)
 {
 	t_stack	*last;
@@ -22,10 +23,8 @@ void	sort_small(t_stack *a, int size_a)
 		if (size_a == 3)
 		{
 			last = ft_last(a);
-			//if (a[2] > a[1] && a[2] < a[0])
 			if (last->value > a->next->value && last->value < a->value)
 				swap_one(a, size_a, 'a');
-			//else if (a[0] < a[1] && a[0] > a[2])
 			else if (a->value < a->next->value && a->next->value > last->value)
 				rrotate_one(a, 'a');
 			else

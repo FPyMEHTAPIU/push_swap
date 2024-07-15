@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_ordered.c                                       :+:      :+:    :+:   */
+/*   ft_alloc_stack.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/07 12:01:37 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/15 18:16:12 by msavelie         ###   ########.fr       */
+/*   Created: 2024/07/15 13:58:54 by msavelie          #+#    #+#             */
+/*   Updated: 2024/07/15 18:32:31 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-// This function checks is the stack 'a' ordered
-int	is_ordered(t_stack *s)
+/* This function allocates memory for the stack 'b' 
+and push one element from 'a' into 'b' */
+t_stack	**alloc_stack(t_stack **a, int *size_a, int *size_b)
 {
-	while (s->next->first != 1)
-	{
-		if (s->value < s->next->value)
-			return (0);
-		s = s->next;
-	}
-	return (1);
-}
+	t_stack	**b;
 
-// This function checks is the stack 'b' ordered
-int	is_ordered_b(t_stack *s)
-{
-	while (s->next->first != 1)
-	{
-		if (s->value > s->next->value)
-			return (0);
-		s = s->next;
-	}
-	return (1);
+	b = (t_stack **)malloc(sizeof(t_stack *) * ((*size_a) - 3));
+	if (!b)
+		return (NULL);
+	push_num(a, b, size_a, size_b);
+	ft_printf("pb\n");
+	return (b);
 }

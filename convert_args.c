@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:47:26 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/11 12:47:11 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/15 18:00:25 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_stack	**convert_args(char **argv, int *size_a)
 	i = 0;
 	while (argv[i])
 		i++;
-	a = (t_stack**)malloc(sizeof(t_stack*) * i);
+	a = (t_stack **)malloc(sizeof(t_stack *) * i);
 	if (!a)
 		return (0);
 	*a = NULL;

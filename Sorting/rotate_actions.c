@@ -6,13 +6,75 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 16:42:21 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/12 17:05:27 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/15 18:25:21 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static int min_both_rot(int *a, int *b)
+// Do subtraction max - min and then do rest rra/rrb
+void	neg_actions(t_hold *holder, int min_ind, t_stack **a, t_stack **b)
+{
+	int	i;
+
+	i = to_pos(min_both_rot(&(holder->a_moves[min_ind]),
+				&(holder->b_moves[min_ind])));
+	while (i--)
+		rrotate_both(*a, *b);
+	i = to_pos(holder->a_moves[min_ind]);
+	while (i--)
+		rrotate_one(*a, 'a');
+	i = to_pos(holder->b_moves[min_ind]);
+	while (i--)
+		rrotate_one(*b, 'b');
+}
+
+// Do subtraction max - min and then do rest ra/rb
+void	pos_actions(t_hold *holder, int min_ind, t_stack **a, t_stack **b)
+{
+	int	i;
+
+	i = to_pos(min_both_rot(&(holder->a_moves[min_ind]),
+				&(holder->b_moves[min_ind])));
+	while (i--)
+		rotate_both(*a, *b);
+	i = to_pos(holder->a_moves[min_ind]);
+	while (i--)
+		rotate_one(*a, 'a');
+	i = to_pos(holder->b_moves[min_ind]);
+	while (i--)
+		rotate_one(*b, 'b');
+}
+
+// Do ra/rra/rb/rrb if they are different
+void	diff_actions(t_hold *holder, int min_ind, t_stack **a, t_stack **b)
+{
+	int	i;
+
+	i = holder->b_moves[min_ind];
+	if (i < 0)
+	{
+		i *= -1;
+		while (i--)
+			rrotate_one(*b, 'b');
+	}
+	else
+		while (i--)
+			rotate_one(*b, 'b');
+	i = holder->a_moves[min_ind];
+	if (i < 0)
+	{
+		i *= -1;
+		while (i--)
+			rrotate_one(*a, 'a');
+	}
+	else
+		while (i--)
+			rotate_one(*a, 'a');
+}
+
+// This function returns value of rr/rrr and changes the value of rest rotations
+int	min_both_rot(int *a, int *b)
 {
 	int	both_moves;
 
@@ -32,21 +94,18 @@ static int min_both_rot(int *a, int *b)
 	return (both_moves);
 }
 
-//TODO: put 2 index arrays, min_moves_ind and stacks into new struct and pass that struct as a parameter
-
-// Do subtraction max - max and then do rest rra/rrb
-void	both_neg_actions(t_calc *holder)
+// This function rotates stack 'b' until it has the greatest element at the top
+void	sort_b(t_stack **b, int size)
 {
-	int	i;
+	int	min_ind;
 
-	i = to_pos(min_both_rot(&(holder->a_moves[holder->min_moves_ind]), 
-		&(holder->b_moves[holder->min_moves_ind])));
-	while (i--)
-		rrotate_both(*(holder->a), *(holder->b));
-	i = to_pos(holder->a_moves[holder->min_moves_ind]);
-	while (i--)
-		rrotate_one(*(holder->a), 'a');
-	i = to_pos(holder->a_moves[holder->min_moves_ind]);
-	while (i--)
-		rrotate_one(*(holder->b), 'b');
+	min_ind = 0;
+	find_max_value(*b, size, &min_ind);
+	while (!is_ordered_b(ft_first(*b)))
+	{
+		if (min_ind >= (size - 1) / 2)
+			rotate_one(*b, 'b');
+		else
+			rrotate_one(*b, 'b');
+	}
 }
