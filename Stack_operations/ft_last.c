@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_last.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/09 15:48:47 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/15 18:13:46 by msavelie         ###   ########.fr       */
+/*   Created: 2024/06/27 13:33:16 by msavelie          #+#    #+#             */
+/*   Updated: 2024/07/15 18:30:41 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../push_swap.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-
-# define UP_HEX_BASE "0123456789ABCDEF"
-# define LOW_HEX_BASE "0123456789abcdef"
-
-int		ft_printf(const char *data, ...);
-int		ft_putchar(char c);
-int		ft_putstr(const char *str);
-int		ft_print_hex(long nbr, int base, char c);
-int		print_p(unsigned long num);
-
-#endif
+// This function returns last element in stack
+t_stack	*ft_last(t_stack *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst->last != 1)
+		lst = lst->next;
+	return (lst);
+}

@@ -6,31 +6,33 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:47:26 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/13 12:42:30 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/15 18:00:25 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*convert_args(char **argv, int *size)
+t_stack	**convert_args(char **argv, int *size_a)
 {
-	int	*arr;
-	int	i;
+	t_stack	**a;
+	int		i;
 
-	while (argv[*size])
-		(*size)++;
-	//ft_printf("size: %d\n", *size);
-	arr = malloc(sizeof(int) * (*size));
-	if (!arr)
-		return (0);
 	i = 0;
-	while (i < *size)
+	while (argv[i])
+		i++;
+	a = (t_stack **)malloc(sizeof(t_stack *) * i);
+	if (!a)
+		return (0);
+	*a = NULL;
+	*size_a = i;
+	i = 0;
+	while (i < *size_a)
 	{
-		if (!is_arg_number(argv[(*size) - 1 - i]))
-			arr[i] = -1;
+		if (!is_arg_number(argv[*size_a - 1 - i]))
+			ft_add_back(a, ft_stack_new(-1));
 		else
-			arr[i] = ft_atoi(argv[(*size) - 1 - i]);
+			ft_add_back(a, ft_stack_new(ft_atoi(argv[*size_a - 1 - i])));
 		i++;
 	}
-	return (arr);
+	return (a);
 }

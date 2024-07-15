@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_stack_new.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/09 15:48:47 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/15 18:13:46 by msavelie         ###   ########.fr       */
+/*   Created: 2024/06/26 12:35:11 by msavelie          #+#    #+#             */
+/*   Updated: 2024/07/15 18:30:51 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../push_swap.h"
 
-# include <stdarg.h>
-# include <unistd.h>
+//This fuction creates a node, allocates memory for it and assign the value
+t_stack	*ft_stack_new(int content)
+{
+	t_stack	*new_stack;
 
-# define UP_HEX_BASE "0123456789ABCDEF"
-# define LOW_HEX_BASE "0123456789abcdef"
-
-int		ft_printf(const char *data, ...);
-int		ft_putchar(char c);
-int		ft_putstr(const char *str);
-int		ft_print_hex(long nbr, int base, char c);
-int		print_p(unsigned long num);
-
-#endif
+	new_stack = malloc(sizeof(t_stack));
+	if (!new_stack)
+		return (NULL);
+	new_stack->value = content;
+	new_stack->next = NULL;
+	return (new_stack);
+}

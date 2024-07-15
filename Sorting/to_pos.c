@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   to_pos.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/09 15:48:47 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/15 18:13:46 by msavelie         ###   ########.fr       */
+/*   Created: 2024/07/12 17:03:49 by msavelie          #+#    #+#             */
+/*   Updated: 2024/07/15 18:26:05 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../push_swap.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-
-# define UP_HEX_BASE "0123456789ABCDEF"
-# define LOW_HEX_BASE "0123456789abcdef"
-
-int		ft_printf(const char *data, ...);
-int		ft_putchar(char c);
-int		ft_putstr(const char *str);
-int		ft_print_hex(long nbr, int base, char c);
-int		print_p(unsigned long num);
-
-#endif
+// This function converts number to positive
+int	to_pos(int num)
+{
+	if (num < 0)
+		num *= -1;
+	return (num);
+}

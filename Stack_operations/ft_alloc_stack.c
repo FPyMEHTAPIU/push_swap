@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_alloc_stack.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/09 15:48:47 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/15 18:13:46 by msavelie         ###   ########.fr       */
+/*   Created: 2024/07/15 13:58:54 by msavelie          #+#    #+#             */
+/*   Updated: 2024/07/15 18:32:31 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../push_swap.h"
 
-# include <stdarg.h>
-# include <unistd.h>
+/* This function allocates memory for the stack 'b' 
+and push one element from 'a' into 'b' */
+t_stack	**alloc_stack(t_stack **a, int *size_a, int *size_b)
+{
+	t_stack	**b;
 
-# define UP_HEX_BASE "0123456789ABCDEF"
-# define LOW_HEX_BASE "0123456789abcdef"
-
-int		ft_printf(const char *data, ...);
-int		ft_putchar(char c);
-int		ft_putstr(const char *str);
-int		ft_print_hex(long nbr, int base, char c);
-int		print_p(unsigned long num);
-
-#endif
+	b = (t_stack **)malloc(sizeof(t_stack *) * ((*size_a) - 3));
+	if (!b)
+		return (NULL);
+	push_num(a, b, size_a, size_b);
+	ft_printf("pb\n");
+	return (b);
+}
