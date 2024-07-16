@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:05:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/15 18:06:28 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:42:32 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int	is_arg_number(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!(ft_isdigit(str[i]) || (i == 0 && str[i] == '-')))
+		if (!(ft_isdigit(str[i]) || (i == 0
+			&& ((str[i] == '-') || str[i] == '+'))))
 			return (0);
 		i++;
 	}
@@ -82,6 +83,10 @@ static int	check_range(t_stack *arr, int size, char **argv)
 	{
 		if ((temp->value == -1 && ft_strncmp(argv[size - 1 - i], "-1", 2) != 0))
 			return (1);
+		if ((temp->value == 0 && ft_strncmp(argv[size - 1 - i], "-0", 2) == 0))
+			return (0);
+		if ((temp->value == 0 && ft_strncmp(argv[size - 1 - i], "+0", 2) == 0))
+			return (0);
 		if ((temp->value == 0 && ft_strncmp(argv[size - 1 - i], "0", 1) != 0))
 			return (1);
 		i++;
