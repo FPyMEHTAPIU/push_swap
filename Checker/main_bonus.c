@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:46:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/16 16:43:01 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/18 16:28:27 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,35 +54,103 @@ static int	invalid_input(int argc, char **strs, int size_a, t_stack **a)
 	return (free_and_ret(strs, a, size_a, 5));
 }
 
+					/////////////////////////NEW PART///////////////////////////////////
+/*static char	*convert_nums(char **argv)
+{
+	int		i;
+	char	*join_str;
+	char	*inputs;
+
+	inputs = ft_strdup(argv[1]);
+	i = 2;
+	join_str = NULL;
+	while (argv[i])
+	{
+		if (join_str)
+			free(join_str);
+		join_str = ft_strjoin(inputs, argv[i]);
+		free(inputs);
+		inputs = join_str;
+		i++;
+	}
+	return (inputs);
+}*/
+
+static char	**realloc_arr(char **arr, int *size, int lines)
+{
+	char	**new_arr;
+	int		i;
+
+	i = 0;
+	new_arr = ft_calloc((*size * 2), sizeof(char *));
+	if (!new_arr)
+	{
+		free_strs(arr, *size);
+		return (NULL);
+	}
+	while (i < lines)
+	{
+		*new_arr = ft_strdup(*arr);
+		if (!new_arr)
+		{
+			free_strs(new_arr, i);
+			free_strs(arr, lines);
+		}
+		(*new_arr)++;
+		(*arr)++;
+		i++;
+	}
+	free_strs(arr, lines);
+	*new_arr = NULL;
+	*size *= 2;
+	return (new_arr);
+}
+
+static char	**get_instructions(void)
+{
+	char	**instr_arr;
+	char	*buf;
+	int		lines;
+	int		size;
+
+	lines = 0;
+	size = INSTR_SIZE;
+	instr_arr = ft_calloc((size + 1), sizeof(char *));
+	if (!instr_arr)
+		return (NULL);
+	buf = get_next_line(0);
+	while (buf)
+	{
+		instr_arr[lines] = ft_strdup(buf);
+		lines++;
+		if (lines == size)
+			instr_arr = realloc_arr(instr_arr, &size, lines);
+		free(buf);
+		buf = get_next_line(0);
+	}
+	ft_printf("lines = %d\n", lines);
+	if (lines == 0)
+		return (NULL);
+	return (instr_arr);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_stack	**a;
 	int		size_a;
+	char	**instr_arr;
 	char	**strs;
-	char	*arguments;
-	//int		fd;
 
 	size_a = 0;
 	a = NULL;
 	if (argc < 2)
 		return (0);
-	int i = 1;
-	while (argv[i])
-	{
-		ft_printf("%s\n", argv[i]);
-		i++;
+	if (argc == 2)
+	{			
+		strs = ft_split(argv[1], ' ');
+		if (!strs || !(*strs))
+			return (free_and_ret(strs, a, size_a, 4));
 	}
-	arguments = get_next_line(0);
-	while (arguments != NULL)
-	{	
-		if (!arguments)
-			return (0);
-		ft_printf(arguments);
-		arguments = get_next_line(0);
-	}
-	strs = ft_split(argv[1], ' '); // replace argv[1] to arguments
-	if (!strs || !(*strs))
-		return (free_and_ret(strs, a, size_a, 4));
 	else
 		strs = &argv[1];
 	a = convert_args(strs, &size_a);
@@ -90,8 +158,15 @@ int	main(int argc, char *argv[])
 		return (invalid_input(argc, strs, size_a, a));
 	if (argc == 2)
 		free_strs(strs, size_a);
+	instr_arr = get_instructions();
+	checker(instr_arr, a, &size_a);
+	/*while (*instr_arr)
+	{
+		ft_printf((*instr_arr));
+		instr_arr++;
+	}*/
 	if (size_a == 1)
 		return (free_and_ret(strs, a, size_a, 2));
-	sorting(a, &size_a);// replace for the checker
+	//sorting(a, &size_a);// replace for the checker
 	return (free_and_ret(strs, a, size_a, 2));
 }

@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 16:42:21 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/15 18:25:21 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:48:05 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	neg_actions(t_hold *holder, int min_ind, t_stack **a, t_stack **b)
 	i = to_pos(min_both_rot(&(holder->a_moves[min_ind]),
 				&(holder->b_moves[min_ind])));
 	while (i--)
-		rrotate_both(*a, *b);
+		rrotate_both(*a, *b, 'r');
 	i = to_pos(holder->a_moves[min_ind]);
 	while (i--)
 		rrotate_one(*a, 'a');
@@ -37,7 +37,7 @@ void	pos_actions(t_hold *holder, int min_ind, t_stack **a, t_stack **b)
 	i = to_pos(min_both_rot(&(holder->a_moves[min_ind]),
 				&(holder->b_moves[min_ind])));
 	while (i--)
-		rotate_both(*a, *b);
+		rotate_both(*a, *b, 'r');
 	i = to_pos(holder->a_moves[min_ind]);
 	while (i--)
 		rotate_one(*a, 'a');

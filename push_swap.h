@@ -6,15 +6,13 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:42:42 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/15 18:35:51 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:46:12 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <fcntl.h>
-# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include "./libft/libft.h"
@@ -49,9 +47,9 @@ void	swap_one(t_stack *stack, int size, char c);
 void	swap_both(t_stack *a, t_stack *b, int size_a, int size_b);
 void	push_num(t_stack **s1, t_stack **s2, int *size_s1, int *size_s2);
 void	rotate_one(t_stack *stack, char c);
-void	rotate_both(t_stack *a, t_stack *b);
+void	rotate_both(t_stack *a, t_stack *b, char c);
 void	rrotate_one(t_stack *stack, char c);
-void	rrotate_both(t_stack *a, t_stack *b);
+void	rrotate_both(t_stack *a, t_stack *b, char c);
 
 /*------SORTING------*/
 
