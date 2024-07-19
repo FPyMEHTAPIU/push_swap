@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:50:57 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/19 11:50:44 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/19 14:50:26 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static int	read_instructions(char **instructions, t_stack **a, int *size_a)
 	b = (t_stack **)malloc(sizeof(t_stack *) * (*size_a));
 	if (!b)
 		return (-1);
+	*b = NULL;
 	while (*instructions)
 	{
 		if ((*instructions)[0] == 'r')
@@ -80,7 +81,7 @@ void	checker(char **instructions, t_stack **a, int *size_a)
 		return ;
 	}
 	temp_size_a = *size_a;
-	if (instructions /* && !is_ordered(*a)*/)
+	if (instructions)
 		size_b = read_instructions(instructions, a, size_a);
 	if (size_b == -1)
 		return ;

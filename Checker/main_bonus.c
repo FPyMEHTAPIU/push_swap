@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:46:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/19 12:48:42 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/19 13:07:01 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,14 +160,11 @@ int	main(int argc, char *argv[])
 	if (argc == 2)
 		free_strs(strs, size_a);
 	instr_arr = get_instructions();
-	checker(instr_arr, a, &size_a);
-	/*while (*instr_arr)
-	{
-		ft_printf((*instr_arr));
-		instr_arr++;
-	}*/
+	if (!check_instructions(instr_arr))
+		write(2, "Error\n", 6);
+	else
+		checker(instr_arr, a, &size_a);
 	if (size_a == 1)
 		return (free_and_ret(strs, a, size_a, 2));
-	//sorting(a, &size_a);// replace for the checker
 	return (free_and_ret(strs, a, size_a, 2));
 }
