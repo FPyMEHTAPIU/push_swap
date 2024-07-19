@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:50:57 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/19 14:50:26 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:17:09 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ static int	read_instructions(char **instructions, t_stack **a, int *size_a)
 			*b = ft_first(*b);
 		instructions++;
 	}
+	if (b)
+		free(b);
+	ft_printf("size_b = %d\n", size_b);
 	return (size_b);
 }
 

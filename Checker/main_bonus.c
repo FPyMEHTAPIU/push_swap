@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:46:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/19 13:07:01 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:28:03 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 // This function frees memory allocated in ft_split
 static int	free_strs(char **list, int index)
 {
+	if (!list)
+		return (1);
 	while (index >= 0)
 	{
 		free(list[index]);
@@ -55,27 +57,6 @@ static int	invalid_input(int argc, char **strs, int size_a, t_stack **a)
 }
 
 					/////////////////////////NEW PART///////////////////////////////////
-/*static char	*convert_nums(char **argv)
-{
-	int		i;
-	char	*join_str;
-	char	*inputs;
-
-	inputs = ft_strdup(argv[1]);
-	i = 2;
-	join_str = NULL;
-	while (argv[i])
-	{
-		if (join_str)
-			free(join_str);
-		join_str = ft_strjoin(inputs, argv[i]);
-		free(inputs);
-		inputs = join_str;
-		i++;
-	}
-	return (inputs);
-}*/
-
 static char	**realloc_arr(char **arr, int *size, int lines)
 {
 	char	**new_arr;
@@ -90,16 +71,12 @@ static char	**realloc_arr(char **arr, int *size, int lines)
 	}
 	while (i < lines)
 	{
-		//*new_arr = ft_strdup(*arr);
-		//*new_arr = ft_strdup(arr[i]);
 		new_arr[i] = ft_strdup(arr[i]);
 		if (!new_arr)
 		{
 			free_strs(new_arr, i);
 			free_strs(arr, lines);
 		}
-		//(*new_arr)++;
-		//(*arr)++;
 		i++;
 	}
 	free_strs(arr, lines);
@@ -131,7 +108,10 @@ static char	**get_instructions(void)
 	}
 	ft_printf("lines = %d\n", lines);
 	if (lines == 0)
+	{
+		free_strs(instr_arr, lines);
 		return (NULL);
+	}	
 	return (instr_arr);
 }
 
@@ -141,6 +121,7 @@ int	main(int argc, char *argv[])
 	int		size_a;
 	char	**instr_arr;
 	char	**strs;
+	int		lines;
 
 	size_a = 0;
 	a = NULL;
@@ -160,10 +141,12 @@ int	main(int argc, char *argv[])
 	if (argc == 2)
 		free_strs(strs, size_a);
 	instr_arr = get_instructions();
-	if (!check_instructions(instr_arr))
+	lines = 0;
+	if (!check_instructions(instr_arr, &lines))
 		write(2, "Error\n", 6);
 	else
 		checker(instr_arr, a, &size_a);
+	free_strs(instr_arr, lines);
 	if (size_a == 1)
 		return (free_and_ret(strs, a, size_a, 2));
 	return (free_and_ret(strs, a, size_a, 2));

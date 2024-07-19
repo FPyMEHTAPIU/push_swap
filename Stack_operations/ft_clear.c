@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:01:44 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/15 18:31:21 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:13:21 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	ft_clear(t_stack **stack, int size)
 {
 	t_stack	*temp;
 
-	*stack = ft_last(*stack);
 	if (!stack)
 		return ;
+	*stack = ft_last(*stack);
 	while (size - 1 > 0)
 	{
 		*stack = ft_last(*stack);

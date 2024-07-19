@@ -6,13 +6,13 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:52:42 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/19 13:09:13 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:19:08 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 
-int	check_instructions(char **instr_arr)
+int	check_instructions(char **instr_arr, int *lines)
 {
 	int	i;
 
@@ -35,5 +35,6 @@ int	check_instructions(char **instr_arr)
 			return (0);
 		i++;
 	}
+	*lines = --i;
 	return (1);
 }
