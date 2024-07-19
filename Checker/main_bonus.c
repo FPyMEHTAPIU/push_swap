@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:46:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/18 16:28:27 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/19 12:48:42 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,18 +90,19 @@ static char	**realloc_arr(char **arr, int *size, int lines)
 	}
 	while (i < lines)
 	{
-		*new_arr = ft_strdup(*arr);
+		//*new_arr = ft_strdup(*arr);
+		//*new_arr = ft_strdup(arr[i]);
+		new_arr[i] = ft_strdup(arr[i]);
 		if (!new_arr)
 		{
 			free_strs(new_arr, i);
 			free_strs(arr, lines);
 		}
-		(*new_arr)++;
-		(*arr)++;
+		//(*new_arr)++;
+		//(*arr)++;
 		i++;
 	}
 	free_strs(arr, lines);
-	*new_arr = NULL;
 	*size *= 2;
 	return (new_arr);
 }
