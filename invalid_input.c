@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_bonus.h                                    :+:      :+:    :+:   */
+/*   invalid_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/16 15:39:34 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/23 12:21:37 by msavelie         ###   ########.fr       */
+/*   Created: 2024/07/23 11:47:53 by msavelie          #+#    #+#             */
+/*   Updated: 2024/07/23 11:54:38 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_BONUS_H
-# define CHECER_BONUS_H
+#include "push_swap.h"
 
-# include "../push_swap.h"
-
-# ifndef INSTR_SIZE
-#  define INSTR_SIZE 15
-# endif
-
-void	choose_rotation(char *instructions, t_stack **a, t_stack **b);
-int		checker(char **instructions, t_stack **a, int *size_a, int lines);
-int		check_instructions(char **instr_arr, int *lines);
-
-#endif
+// This function frees all allocated if they exist and print error
+int	invalid_input(int argc, char **strs, int size_a, t_stack **a)
+{
+	if (argc == 2)
+		free_strs(strs, size_a);
+	return (free_and_ret(strs, a, size_a, 5));
+}

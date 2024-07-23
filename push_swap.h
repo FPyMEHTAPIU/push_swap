@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:42:42 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/18 15:46:12 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:48:17 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,14 @@ typedef struct s_hold
 	int	*a_moves;
 }	t_hold;
 
-/*------CHECKERS------*/
+/*------DATA HANDLERS------*/
 
 t_stack	**convert_args(char **argv, int *size_a);
 int		is_arg_number(char *str);
 int		check_args(t_stack *arr, int size, char **argv);
+int		free_strs(char **list, int index);
+int		free_and_ret(char **strs, t_stack **stack, int size_a, int type);
+int		invalid_input(int argc, char **strs, int size_a, t_stack **a);
 
 /*------INSTRUCTIONS------*/
 

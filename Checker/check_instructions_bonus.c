@@ -6,12 +6,14 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:52:42 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/23 11:15:19 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:56:09 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 
+/* This function checks all instructions and returns 0 
+if a wrong instruction has been passed */
 int	check_instructions(char **instr_arr, int *lines)
 {
 	int	i;
@@ -37,7 +39,5 @@ int	check_instructions(char **instr_arr, int *lines)
 			return (0);
 		i++;
 	}
-	//*lines = i;
-	ft_printf("lines = %d\n", *lines);
 	return (1);
 }

@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/11 12:46:12 by msavelie          #+#    #+#              #
-#    Updated: 2024/07/19 13:02:44 by msavelie         ###   ########.fr        #
+#    Updated: 2024/07/23 12:45:12 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRCS = \
 	main.c \
 	convert_args.c \
 	check_args.c \
+	free_args.c \
+	invalid_input.c \
 	${INSTR_DIR}/instructions_ps.c  \
 	${INSTR_DIR}/instructions_rotate.c \
 	${LIST_DIR}/ft_add_back.c \
@@ -45,8 +47,8 @@ BONUS_DIR = ./Checker
 BONUS = \
 	${BONUS_DIR}/checker_bonus.c \
 	${BONUS_DIR}/main_bonus.c \
-	${BONUS_DIR}/switcher.c \
-	${BONUS_DIR}/check_instructions.c
+	${BONUS_DIR}/switcher_bonus.c \
+	${BONUS_DIR}/check_instructions_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 BONUS_OBJS = $(BONUS:.c=.o)
