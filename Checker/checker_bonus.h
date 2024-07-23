@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:39:34 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/19 15:16:50 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/23 10:51:50 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # endif
 
 void	choose_rotation(char *instructions, t_stack **a, t_stack **b);
-void	checker(char **instructions, t_stack **a, int *size_a);
+void	checker(char **instructions, t_stack **a, int *size_a, int lines);
 int		check_instructions(char **instr_arr, int *lines);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:52:42 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/19 15:19:08 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:15:19 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	check_instructions(char **instr_arr, int *lines)
 	i = 0;
 	if (!instr_arr)
 		return (1);
+	while (instr_arr[*lines])
+		(*lines)++;
 	while (instr_arr[i])
 	{
 		if (ft_strncmp(instr_arr[i], "sa\n", 3) != 0
@@ -35,6 +37,7 @@ int	check_instructions(char **instr_arr, int *lines)
 			return (0);
 		i++;
 	}
-	*lines = --i;
+	//*lines = i;
+	ft_printf("lines = %d\n", *lines);
 	return (1);
 }

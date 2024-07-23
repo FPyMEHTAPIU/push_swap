@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:50:57 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/23 08:04:45 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:22:04 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,9 @@ static t_stack	**alloc_mem_stack(int size)
 static int	read_instructions(char **instructions, t_stack **a, int *size_a, int *size_b)
 {
 	t_stack	**b;
-	//int		size_b;
 	int		pb_instr;
 	int		is_ordered_a;
 
-//	size_b = 0;
 	b = alloc_mem_stack(*size_a);
 	if (!b)
 		return (-1);
@@ -101,14 +99,14 @@ static int	read_instructions(char **instructions, t_stack **a, int *size_a, int 
 		ft_clear(b, *size_b);
 	if (*size_a > 0)
 	{
-		is_ordered_a = is_ordered(*a);
+		is_ordered_a = is_ordered(ft_first(*a));
 		ft_clear(a, *size_a);
 	}
 	return (is_ordered_a);
 }
 
 // This funtion applies all instructions and then check is the stack 'a' sorted
-void	checker(char **instructions, t_stack **a, int *size_a)
+void	checker(char **instructions, t_stack **a, int *size_a, int lines)
 {
 	int	size_b;
 	int	temp_size_a;
@@ -122,7 +120,7 @@ void	checker(char **instructions, t_stack **a, int *size_a)
 		return ;
 	}
 	temp_size_a = *size_a;
-	if (instructions)
+	if (instructions && lines > 0)
 	{
 		is_ordered_a = read_instructions(instructions, a, size_a, &size_b);
 		if (is_ordered_a == -1)
@@ -130,7 +128,7 @@ void	checker(char **instructions, t_stack **a, int *size_a)
 			write(2, "Error\n", 6);
 			return ;
 		}
-		if (temp_size_a == *size_a && is_ordered_a /*is_ordered(*a)*/ && size_b == 0)
+		if (temp_size_a == *size_a && is_ordered_a && size_b == 0)
 		{
 			*size_a = 0;
 			ft_printf("OK\n");
