@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:41:33 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/18 15:47:15 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/23 07:59:17 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	rrotate_one(t_stack *stack, char c)
 	t_stack	*temp;
 	t_stack	*first;
 
+	if (!stack || stack == stack->next)
+		return ;
 	first = ft_first(stack);
 	if (!first)
 		return ;
@@ -50,6 +52,8 @@ void	rotate_one(t_stack *stack, char c)
 	t_stack	*s_first;
 	t_stack	*s_last;
 
+	if (!stack || stack == stack->next)
+		return ;
 	s_first = ft_first(stack);
 	s_last = ft_last(stack);
 	s_last->last = 0;

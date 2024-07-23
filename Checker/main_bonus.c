@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:46:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/19 16:28:03 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/23 07:17:26 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ static int	free_and_ret(char **strs, t_stack **stack, int size_a, int type)
 	if (type > 3)
 		write(2, "Error\n", 6);
 	if (type == 2 || type == 3 || type == 5 || type == 6)
-		ft_clear(stack, size_a);
+		if (size_a > 0)
+			ft_clear(stack, size_a);
 	return (0);
 }
 
@@ -147,7 +148,9 @@ int	main(int argc, char *argv[])
 	else
 		checker(instr_arr, a, &size_a);
 	free_strs(instr_arr, lines);
-	if (size_a == 1)
+	// if (size_a == 1)
+	// 	return (free_and_ret(strs, a, size_a, 2));
+	ft_printf("size_a = %d\n", size_a);
+	if (size_a > 0)
 		return (free_and_ret(strs, a, size_a, 2));
-	return (free_and_ret(strs, a, size_a, 2));
 }
