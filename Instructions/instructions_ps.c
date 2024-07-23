@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:47:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/22 17:03:30 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/23 13:58:24 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,25 @@ static void	change_ptrs(t_stack *stack, t_stack *s_last, t_stack *s_prev)
 
 /* This function swap one element at the top in passed stack 
 with the previous one and prints message */
-void	swap_one(t_stack *stack, int size, char c)
+void	swap_one(t_stack *stack, /*int size,*/ char c)
 {
 	t_stack	*s_last;
 	t_stack	*s_prev;
 
-	if (size <= 1)
+	if (stack == stack->next || stack == stack->prev)
 		return ;
+	// if (size <= 1)
+	// 	return ;
 	s_last = ft_last(stack);
 	s_prev = s_last->prev;
 	s_last->last = 0;
 	s_prev->last = 1;
-	if (size == 2)
+	// if (size == 2)
+	// {
+	// 	s_prev->first = 0;
+	// 	s_last->first = 1;
+	// }
+	if (stack->next == stack->prev)
 	{
 		s_prev->first = 0;
 		s_last->first = 1;
@@ -52,11 +59,12 @@ void	swap_one(t_stack *stack, int size, char c)
 
 /* This function swap one element at the top in both stacks 
 with the previous one and prints message */
-void	swap_both(t_stack *a, t_stack *b, int size_a, int size_b)
+void	swap_both(t_stack *a, t_stack *b, char c)//, int size_a, int size_b)
 {
-	swap_one(a, size_a, 0);
-	swap_one(b, size_b, 0);
-	ft_printf("ss\n");
+	swap_one(a, /*size_a,*/ 0);
+	swap_one(b, /*size_b,*/ 0);
+	if (c != 0)
+		ft_printf("ss\n");
 }
 
 /* Move top element from s1 to s2

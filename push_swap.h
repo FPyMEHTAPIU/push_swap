@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:42:42 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/23 11:48:17 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:01:12 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int		invalid_input(int argc, char **strs, int size_a, t_stack **a);
 
 /*------INSTRUCTIONS------*/
 
-void	swap_one(t_stack *stack, int size, char c);
-void	swap_both(t_stack *a, t_stack *b, int size_a, int size_b);
+void	swap_one(t_stack *stack, /*int size,*/ char c);
+void	swap_both(t_stack *a, t_stack *b, char c); //, int size_a, int size_b);
 void	push_num(t_stack **s1, t_stack **s2, int *size_s1, int *size_s2);
 void	rotate_one(t_stack *stack, char c);
 void	rotate_both(t_stack *a, t_stack *b, char c);

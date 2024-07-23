@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:50:57 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/23 13:48:40 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:11:46 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,13 @@ static t_stack	**alloc_mem_stack(int size)
 	return (s);
 }
 
-static void	free_b(t_stack **b, int size_b, int pb_instr)
+static int	free_b(t_stack **b, int size_b, int pb_instr)
 {
 	if (b && size_b > 0)
 		ft_clear(b, size_b);
 	else if (b && pb_instr == 0)
 		ft_clear(b, size_b);
+	return (0);
 }
 
 static int	free_a(t_stack **a, int size_a)
@@ -95,57 +96,51 @@ static int	check_capacity(t_stack **s, int size_s, int pb_instr, int size_a)
 	return (1);
 }
 
+static void	set_first(t_stack **a, t_stack **b, int size_a, int size_b)
+{
+	if (size_a > 0)
+		*a = ft_first(*a);
+	if (size_b > 0)
+		*b = ft_first(*b);
+}
+
 // This function reads instructions and does those actions
 static int	read_instructions(char **instructions, t_stack **a, int *size_a, int *size_b)
 {
 	t_stack	**b;
 	int		pb_instr;
-	int		is_ordered_a;
 
 	b = alloc_mem_stack(*size_a);
 	if (!b)
 		return (-1);
 	pb_instr = 0;
-	is_ordered_a = 0;
 	while (*instructions)
 	{
 		if ((*instructions)[0] == 'r')
 			choose_rotation(*instructions, a, b);
 		else if ((*instructions)[0] == 's')
-		{
-			if ((*instructions)[1] == 'a')
-				swap_one(*a, *size_a, 0);
-			else if ((*instructions)[1] == 'b')
-				swap_one(*b, *size_b, 0);
-			else if ((*instructions)[1] == 's')
-			{
-				swap_one(*a, *size_a, 0);
-				swap_one(*b, *size_b, 0);
-			}
-		}
+			choose_swap(a, b, (*instructions)[1]);
 		else if ((*instructions)[0] == 'p')
 		{
 			if ((*instructions)[1] == 'a')
 			{
-				check_capacity(a, *size_a, pb_instr, -1);
+				if (!check_capacity(a, *size_a, pb_instr, -1))
+					return (free_b(b, *size_b, pb_instr));
 				push_num(b, a, size_b, size_a);
 			}
 			else if ((*instructions)[1] == 'b')
 			{
-				check_capacity(b, *size_b, pb_instr, *size_a);
+				if (!check_capacity(b, *size_b, pb_instr, *size_a))
+					return (free_a(a, *size_a));
 				push_num(a, b, size_a, size_b);
 				pb_instr++;
 			}
 		}
-		if (*size_a > 0)
-			*a = ft_first(*a);
-		if (*size_b > 0)
-			*b = ft_first(*b);
+		set_first(a, b, *size_a, *size_b);
 		instructions++;
 	}
 	free_b(b, *size_b, pb_instr);
-	is_ordered_a = free_a(a, *size_a);
-	return (is_ordered_a);
+	return (free_a(a, *size_a));
 }
 
 // This funtion applies all instructions and then check is the stack 'a' sorted
