@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 15:34:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/23 14:03:20 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:04:26 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,32 @@ void	choose_swap(t_stack **a, t_stack **b, char c)
 		swap_one(*b, 0);
 	else if (c == 's')
 		swap_both(*a, *b, 0);
+}
+
+int	push_to_stack(t_stack **s1, t_stack **s2, int *size_s1, int *size_s2)
+{
+	static int	pb_instr;
+	
+	if (!(*s1) || *size_s1 == 0)
+		return (1);
+	*s1 = ft_first(*s1);
+	if (*size_s2 > 0)
+		*s2 = ft_first(*s2);
+	if (ft_last(*s1)->type == 'b')
+	{
+		if (!check_capacity(s2, *size_s2, pb_instr, -(*size_s1)))
+			return (free_b(s2, s1, *size_s2, *size_s1));
+		push_num(s1, s2, size_s1, size_s2);
+		ft_last(*s2)->type = 'a';
+		ft_last(*s2)->was_pushed = 1;
+	}
+	else if (ft_last(*s1)->type == 'a')
+	{
+		if (!check_capacity(s2, *size_s2, pb_instr, *size_s1))
+			return (free_a(s1, size_s1));
+		push_num(s1, s2, size_s1, size_s2);
+		pb_instr++;
+		ft_last(*s2)->type = 'b';
+	}
+	return (1);
 }
