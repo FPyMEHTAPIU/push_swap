@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 15:34:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/24 19:04:26 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/24 22:58:14 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,6 @@ int	push_to_stack(t_stack **s1, t_stack **s2, int *size_s1, int *size_s2)
 	
 	if (!(*s1) || *size_s1 == 0)
 		return (1);
-	*s1 = ft_first(*s1);
-	if (*size_s2 > 0)
-		*s2 = ft_first(*s2);
 	if (ft_last(*s1)->type == 'b')
 	{
 		if (!check_capacity(s2, *size_s2, pb_instr, -(*size_s1)))
