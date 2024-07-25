@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/11 12:46:12 by msavelie          #+#    #+#              #
-#    Updated: 2024/07/23 12:45:12 by msavelie         ###   ########.fr        #
+#    Updated: 2024/07/25 11:53:31 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ BONUS = \
 	${BONUS_DIR}/checker_bonus.c \
 	${BONUS_DIR}/main_bonus.c \
 	${BONUS_DIR}/switcher_bonus.c \
-	${BONUS_DIR}/check_instructions_bonus.c
+	${BONUS_DIR}/check_instructions_bonus.c \
+	${BONUS_DIR}/stack_handling_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 BONUS_OBJS = $(BONUS:.c=.o)
