@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:42:42 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/24 23:19:10 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/25 09:37:50 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 typedef struct s_stack
 {
-	char			type;
+	// char			type;
 	int				was_pushed;
 	int				value;
 	int				last;

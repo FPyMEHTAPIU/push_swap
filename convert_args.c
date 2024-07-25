@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:47:26 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/24 23:14:41 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/25 09:38:23 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_stack	**convert_args(char **argv, int *size_a)
 		else
 			ft_add_back(a, ft_stack_new(ft_atoi(argv[*size_a - 1 - i])));
 		i++;
-		ft_last(*a)->type = 'a';
+		// (*a)->type = 'a';
 		ft_last(*a)->was_pushed = 0;
 	}
 	return (a);
