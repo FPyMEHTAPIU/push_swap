@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:50:57 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/24 22:21:49 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/25 11:34:54 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,14 @@ int	free_a(t_stack **a, int *size_a)
 	return (is_ordered_a);
 }
 
-int	check_capacity(t_stack **s, int size_s, int pb_instr, int size_a)
+int	check_capacity(t_stack **s, int size_s, int pb_instr, int *size_a)
 {
-	if (size_a < 0)
+	if (*size_a < 0)
 	{
-		size_a *= -1;
+		*size_a *= -1;
 		if (size_s == 0)
 		{
-			s = alloc_mem_stack(size_a);
+			s = alloc_mem_stack(*size_a);
 			if (!s)
 				return (0);
 		}
@@ -108,7 +108,7 @@ int	check_capacity(t_stack **s, int size_s, int pb_instr, int size_a)
 	{
 		if (size_s == 0 && pb_instr > 0)
 		{
-			s = alloc_mem_stack(size_a);
+			s = alloc_mem_stack(*size_a);
 			if (!s)
 				return (0);
 		}
@@ -122,6 +122,12 @@ static void	set_first(t_stack **a, t_stack **b, int size_a, int size_b)
 		*a = ft_first(*a);
 	if (size_b > 0)
 		*b = ft_first(*b);
+}
+
+int	*to_neg_ptr(int *size)
+{
+	*size *= -1;
+	return (size);
 }
 
 // This function reads instructions and does those actions
@@ -141,7 +147,7 @@ static int	read_instructions(char **instructions, t_stack **a, int *size_a, int 
 		else if ((*instructions)[0] == 'p')
 		{
 			if ((*instructions)[1] == 'a')
-				if (!push_to_stack(b, a, size_b, size_a))
+				if (!push_to_stack(b, a, to_neg_ptr(size_b), size_a))
 					return (free_a(a, size_a));
 			if ((*instructions)[1] == 'b')
 				if (!push_to_stack(a, b, size_a, size_b))
