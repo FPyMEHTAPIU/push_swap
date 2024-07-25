@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:05:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/16 15:42:32 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/25 11:47:46 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	is_arg_number(char *str)
 	while (str[i])
 	{
 		if (!(ft_isdigit(str[i]) || (i == 0
-			&& ((str[i] == '-') || str[i] == '+'))))
+					&& ((str[i] == '-') || str[i] == '+'))))
 			return (0);
 		i++;
 	}

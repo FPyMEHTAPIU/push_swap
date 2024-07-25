@@ -6,13 +6,14 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:46:27 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/24 14:08:42 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/25 11:49:23 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 
-// This function copies data, frees old memory and allocates x2 memory for the object
+/* This function copies data, frees old memory 
+and allocates x2 memory for the object */
 static char	**realloc_arr(char **arr, int *size, int lines)
 {
 	char	**new_arr;
