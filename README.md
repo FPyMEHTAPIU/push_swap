@@ -27,14 +27,14 @@ My calculation logic compares each element in stack 'a' with each element in sta
 
 <p>
   <img src="https://github.com/FPyMEHTAPIU/push_swap/blob/main/imgs/1.png" alt="Picture 1"/>
-  &nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/FPyMEHTAPIU/push_swap/blob/main/imgs/2.png" alt="Picture 2"/>
+  <img src="https://github.com/FPyMEHTAPIU/push_swap/blob/main/imgs/2.png" alt="Picture 2"/>
 </p>
 
 After that, I perform the actual actions and push a number from stack 'a' to stack 'b'. As I mentioned, I repeat these actions until stack 'a' has a size of 3. When the size of stack 'a' equals 3, I check if the highest number is at the top of stack 'b'. If not, I rotate this stack as many times as needed.
 
 <p>
   <img src="https://github.com/FPyMEHTAPIU/push_swap/blob/main/imgs/3.png" alt="Picture 3"/>
-  &nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/FPyMEHTAPIU/push_swap/blob/main/imgs/4.png" alt="Picture 4"/>
+  <img src="https://github.com/FPyMEHTAPIU/push_swap/blob/main/imgs/4.png" alt="Picture 4"/>
 </p>
 
 ![Picture 5](https://github.com/FPyMEHTAPIU/push_swap/blob/main/imgs/5.png)
@@ -47,19 +47,19 @@ Finally, I push numbers from stack 'b' to stack 'a' to their suitable places. Th
 
 <p>
   <img src="https://github.com/FPyMEHTAPIU/push_swap/blob/main/imgs/7.png" alt="Picture 7"/>
-  &nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/FPyMEHTAPIU/push_swap/blob/main/imgs/8.png" alt="Picture 8"/>
+  <img src="https://github.com/FPyMEHTAPIU/push_swap/blob/main/imgs/8.png" alt="Picture 8"/>
 </p>
 
 <p>
   <img src="https://github.com/FPyMEHTAPIU/push_swap/blob/main/imgs/9.png" alt="Picture 9"/>
-  &nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/FPyMEHTAPIU/push_swap/blob/main/imgs/10.png" alt="Picture 10"/>
+  <img src="https://github.com/FPyMEHTAPIU/push_swap/blob/main/imgs/10.png" alt="Picture 10"/>
 </p>
 
 ![Picture 11](https://github.com/FPyMEHTAPIU/push_swap/blob/main/imgs/11.png)
 
 At the end, I **free all remaining memory**.
 
-<p align="center">
+<p>
   <img src="https://github.com/FPyMEHTAPIU/push_swap/blob/main/imgs/push_swap%20gif.gif" alt="Picture 12"/>
 </p>
 
