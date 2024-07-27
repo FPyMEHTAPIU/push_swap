@@ -74,3 +74,14 @@ The bonus part requires implementing the **checker_OS** program. This program re
 
 The logic is quite simple: first, you convert your arguments (numbers) and put them in the stack. Then, you receive the list of instructions, check each instruction (there can be invalid input or instructions that don't exist or have extra characters), and perform those instructions on the stack. After that, you just need to check if stack 'a' is sorted and print **"OK"** or **"KO"**.
 Of course, you should always remember to manage memory and free it in all possible situations.
+
+## My results
+
+This logic earned me the highest grade in that project, with results that were below the lowest threshold of instructions.
+
+<p>
+  <img src="https://github.com/FPyMEHTAPIU/push_swap/blob/main/imgs/test%20100.jpg" alt="100 numbers"/>
+  <img src="https://github.com/FPyMEHTAPIU/push_swap/blob/main/imgs/test%20500.jpg" alt="500 numbers"/>
+</p>
+
+![Final grade](https://github.com/FPyMEHTAPIU/push_swap/blob/main/imgs/grade.png)
