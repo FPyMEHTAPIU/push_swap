@@ -1,6 +1,14 @@
 # push_swap
 
-## Mandatory part
+## Project workflow
+
+<ul>
+  <li><a href="#Mandatory part">Mandatory part</a></li>
+  <li><a href="#Bonus part">Bonus part</a></li>
+  <li><a href="#Results">My results</a></li>
+</ul>
+
+### <h3 id="Mandatory part">Mandatory part</h3>
 In this project, I implemented stack sorting logic using a temporary stack 'b'. The stack should be sorted in the **least possible number of actions**. Our arguments in the stack are integer numbers which we pass when running the program and **they can't repeat**. The lowest number should be at the top of the first stack 'a', with numbers in ascending order. We can only use the following restricted actions:
 
 <ul>
@@ -63,7 +71,7 @@ At the end, I **free all remaining memory**.
   <img src="https://github.com/FPyMEHTAPIU/push_swap/blob/main/imgs/push_swap%20gif.gif" alt="Picture 12"/>
 </p>
 
-## Bonus part
+### <h3 id="Bonus part">Bonus part</h3>
 
 The bonus part requires implementing the **checker_OS** program. This program receives a list of numbers (just like push_swap) and then a list of instructions one by one from the standard input. It must check a few conditions:
 
@@ -75,7 +83,7 @@ The bonus part requires implementing the **checker_OS** program. This program re
 The logic is quite simple: first, you convert your arguments (numbers) and put them in the stack. Then, you receive the list of instructions, check each instruction (there can be invalid input or instructions that don't exist or have extra characters), and perform those instructions on the stack. After that, you just need to check if stack 'a' is sorted and print **"OK"** or **"KO"**.
 Of course, you should always remember to manage memory and free it in all possible situations.
 
-## My results
+### <h3 id="Results">My results</h3>
 
 This logic earned me the highest grade in that project, with results that were below the lowest threshold of instructions.
 
