@@ -15,8 +15,8 @@ In this project, I implemented stack sorting logic using a temporary stack 'b'. 
 <li>sa - swap the top 2 elements in stack 'a'.</li>
 <li>sb - swap the top 2 elements in stack 'b'.</li>
 <li>ss - swap the top 2 elements in both stacks at the same time.</li>
-<li>pa - push the top element from stack 'a' to stack 'b'.</li>
-<li>pb - push the top element from stack 'b' to stack 'a'.</li>
+<li>pa - push the top element from stack 'b' to stack 'a'.</li>
+<li>pb - push the top element from stack 'a' to stack 'b'.</li>
 <li>ra - rotate stack 'a' (the last element becomes the first).</li>
 <li>rb - rotate stack 'b' (the last element becomes the first).</li>
 <li>rr - rotate both stacks at the same time (the last elements become the first).</li>
